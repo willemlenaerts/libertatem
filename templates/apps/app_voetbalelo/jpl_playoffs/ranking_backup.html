@@ -1,0 +1,625 @@
+{#Import static files (images/css/js/...):#} 
+{% load staticfiles %} 
+{#Import custom made template tags and filters:#} 
+{% load jpl_playoffs_templates %}
+<html>
+
+<head>
+    {#This import css file (static)#}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/custom.css' %}" />
+    <!--<link rel="stylesheet" type="text/css" href="{% static 'css/jquery.qtip.min.css' %}" /> {#JQuery for basic tools#}-->
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    {#Tablesorter to make table sortable via columns#} {#Added locally as a static file#}
+    <script src="{% static "js/tablesorter/jquery.tablesorter.js" %}"></script>
+    <!--<script src="{% static "js/qtip2/jquery.qtip.min.js" %}"></script>-->
+
+    {#Add bootstrap#} {#css#}
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+
+    <!--<link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap/bootstrap.min.css' %}" />-->
+    <!--<link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap/bootstrap-theme.min.css' %}" />-->
+    {#js#}
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <!--<script src="{% static "js/bootstrap/bootstrap.min.js" %}"></script>-->
+    <!--<script src="{% static "js/bootstrap/npm.js" %}"></script>-->
+
+    <script type="text/javascript" src="{% static "js/chart.js/Chart.min.js" %}"></script>
+    <script type="text/javascript" src="{% static "js/chart.js/Chart.StackedBar.js" %}"></script>
+    {#Google Charts#}
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    <script type="text/javascript">
+        google.load("visualization", "1", {
+            packages: ["piechart", "corechart", "geomap"]
+        });
+    </script>
+    {#Script to load tablesorter, create charts and fill table#}
+
+    <script type="text/javascript">
+        // {#On document ready, load stuff#}
+        $(document).ready(function() {
+            // Global variable that saves actual status of the history chart
+            history_chart_status = new Object();
+            forecast_chart_status = new Object();
+            {% for comp in competitions  %}
+                history_chart_status["{{comp}}"] = new Object();
+                forecast_chart_status["{{comp}}"] = new Object();
+            {% endfor %}
+            // Laadt alle django server data in client side js data objects
+            competitions = {{ competitions |safe }};
+            categories = {{ categories |safe }};
+            
+            speeldagen = new Object();
+            teams = new Object();
+            forecast_chart = new Object();
+            history_chart = new Object();
+            colors = new Object();
+            {% for comp in competitions  %}
+                speeldagen["{{comp}}"] = {{ speeldagen|access:comp }}
+                teams["{{comp}}"] = {{ teams|access:comp |safe }}
+                {% if comp != "rs" %}
+                    forecast_chart["{{comp}}"] = [];
+                    {% for team in forecast_chart|access:comp %}
+                        forecast_chart["{{comp}}"].push({{ forecast_chart|access:comp|get_at_index:forloop.counter |safe }});
+                    {% endfor %}
+                {% endif %}
+                history_chart["{{comp}}"] = new Object();
+                colors["{{comp}}"] = {{ colors|access:comp |safe }};
+                {% for cat in categories  %}
+                    history_chart["{{comp}}"]["{{cat}}"] = {{ history_chart|access:comp|access:cat |safe }};
+                {% endfor %}
+            {% endfor %}
+
+            // Laadt correcte upcoming games tabel voor elke competitie (behalve rs: geen upcoming games)
+            {% for comp in competitions  %}
+                {% if comp != "rs" %}
+                     $("#" + "games_" + "{{ comp }}" + "_" + String({{ speeldag_actueel|access:comp }})).show();
+                     for (i = 0; i <= {{ speeldagen|access:comp }}-1; i++) {
+                        if (i + 1 != {{ speeldag_actueel|access:comp }}) {
+                            $("#" + "games_" + "{{ comp }}" + "_" + String(i + 1)).hide();
+                        }
+                    }
+                {% endif %}
+            {% endfor %}
+
+            // Draw charts           
+            {% for comp in competitions  %}
+                {% if comp != "rs" %}
+                    drawForecastChart("{{ comp }}","all");
+                    forecast_chart_status["{{comp}}"]["team"] = "all";
+                {% endif %}
+                drawHistoryChart("{{ comp }}","elo","all");
+                history_chart_status["{{comp}}"]["cat"] = "elo";
+                history_chart_status["{{comp}}"]["team"] = "all";
+                // drawHistoryChart("{{ comp }}","ranking","all");
+                // drawHistoryChart("{{ comp }}","points","all");
+            {% endfor %}
+
+            // Sort tables
+            {% for comp in competitions  %}
+                $("#" + "ranking_" + "{{ comp }}").tablesorter({
+                    // sort on the first column (rank), order asc
+                    sortList: [
+                        [0, 0],
+                        [2, 0]
+                    ]
+                });
+            {% endfor %}
+            
+            // Center Forecast Graph Vertically
+            // {% for comp in competitions  %}
+            //     {% if comp != "rs" %}
+            //         $("#div_forecast_" + "{{ comp }}").css('margin-top',($("#div_tables_" + "{{ comp }}").height() - $("#div_forecast_" + "{{ comp }}").height())/2);
+            //     {% endif %}
+            // {% endfor %}
+        });
+    </script>
+    
+    <!--Toggle between forecast charts-->
+    <script>
+        function toggle_forecast_chart(comp,team) {
+            
+            // Hide previous chart
+            var id_string_old = "forecast_chart_" + comp + "_" + forecast_chart_status[comp]["team"];
+            var element_old = document.getElementById(id_string_old);
+            $(element_old).hide();
+            
+            // Show new chart
+            var id_string = "forecast_chart_" + comp + "_" + team;
+            var element = document.getElementById(id_string);            
+            $(element).show();
+
+       
+           // Update chart status
+           forecast_chart_status[comp]["team"] = team
+    }
+    </script>
+    
+    <!--Toggle between history charts-->
+    <script>
+        function toggle_history_chart(comp,cat,team) {
+            
+            // Hide previous chart
+            var id_string_old = "history_chart_" + comp + "_" + history_chart_status[comp]["cat"] + "_" + history_chart_status[comp]["team"];
+            var element_old = document.getElementById(id_string_old);
+            $(element_old).hide();
+            
+            // Show new chart
+            var id_string = "history_chart_" + comp + "_" + cat + "_" + team;
+            var element = document.getElementById(id_string);            
+            $(element).show();
+
+       
+           // Update chart status
+           history_chart_status[comp]["cat"] = cat
+           history_chart_status[comp]["team"] = team
+    }
+    </script>
+
+    <!--Speeldagen pagination-->
+    <script>
+        function speeldagen_pagination(comp, sp) {
+            
+            var speeldagen_comp = speeldagen[comp];
+
+            $("#games_" + comp + "_" + String(sp)).show();
+
+            for (i = 0; i <= speeldagen_comp - 1; i++) {
+                if (i + 1 != sp) {
+                    $("#games_" + comp + "_" + String(i + 1)).hide();
+                    $("#" + comp + "_pag_" + String(i+1)).removeClass("active");
+                }
+                else {
+                    $("#" + comp + "_pag_" + String(i+1)).addClass("active");
+                }
+            }
+        }
+    </script>
+
+    <!--Draw History Chart   -->
+    <script>
+        function drawHistoryChart(comp, cat, team) {
+
+         
+        
+        // Get correct dataset (colors, data, context canvas)
+        if (team == "all") {
+            var raw_data = history_chart[comp][cat];
+            var colors_graph = colors[comp];
+        } else {
+            for (i = 0; i<= teams[comp].length -1; i++) {
+
+                if (team == teams[comp][i]) {
+
+                    var raw_data = [];
+                    for (j = 0; j<= history_chart[comp][cat].length - 1;j++ ) {
+                        raw_data.push([history_chart[comp][cat][j][0],history_chart[comp][cat][j][i+1]]);
+                    }
+                    var colors_graph = [colors[comp][i]];
+                    break
+                }
+            }
+            
+        }
+        
+        // Some id's have spaces (AA Gent for example)
+        var id_string = "history_chart_" + comp +"_"+ cat + "_" + team;
+        var element = document.getElementById(id_string);
+
+        
+        var ctx = $(element).get(0).getContext("2d");
+            var labels = [];
+            for (i = 1; i <= raw_data.length - 1; i++) {
+                labels.push(raw_data[i][0])
+            }
+
+            var dataset = [];
+            // For every team
+            for (i = 1; i <= raw_data[0].length - 1; i++) {
+                var dummy = [];
+                // For every data point
+                for (j = 1; j <= raw_data.length - 1; j++) {
+                    if (raw_data[j][i] != "nan") {
+                        // ranking omgekeerd (1 bovenaan, 16 onderaan)
+                        if (cat == "ranking") {
+                            dummy.push(-raw_data[j][i])
+                        }
+                        else {
+                            dummy.push(raw_data[j][i])
+                        }
+                    }
+                }
+
+                dataset.push({
+                    label: raw_data[0][i],
+                    fillColor: "rgba(220,220,220,0)",
+                    strokeColor: colors_graph[i - 1],
+                    pointColor: colors_graph[i - 1],
+                    pointStrokeColor: "#fff",
+                    pointHighlightFill: colors_graph[i - 1],
+                    pointHighlightStroke: "rgba(220,220,220,0)",
+                    data: dummy
+                })
+            }
+                
+            var data = {
+                labels: labels,
+                datasets: dataset
+            };
+
+            if (cat == "ranking") {
+                var options = {
+                    scaleOverride: true,
+                    // ** Required if scaleOverride is true **
+                    // Number - The number of steps in a hard coded scale
+                    scaleSteps: 15,
+                    // Number - The value jump in the hard coded scale
+                    scaleStepWidth: 1,
+                    // Number - The scale starting value
+                    scaleStartValue: -16,
+                    scaleLabel: "<%=-value%>",
+                    multiTooltipTemplate: "<%= datasetLabel %>: <%= -value %>",
+                    animation: false,
+                    scaleFontFamily: "monospace",
+                    tooltipFontFamily: "monospace",
+                    tooltipTitleFontFamily: "monospace"
+                };
+            }
+            else {
+                var options = {
+                    multiTooltipTemplate: "<%= datasetLabel %>: <%= value %>",
+                    animation: false,
+                    
+                    scaleFontFamily: "monospace",
+                    tooltipFontFamily: "monospace",
+                    tooltipTitleFontFamily: "monospace"
+                    };
+            }
+
+            myNewChart = new Chart(ctx).Line(data, options);
+            toggle_history_chart(comp,cat,team);
+        }
+        function drawHistoryChart_changeCat(comp, cat, team) {
+            // Teams remains the same
+            var team = history_chart_status[comp]["team"];
+            drawHistoryChart(comp, cat, team);
+        }
+    </script>
+    
+    <!--Draw Forecast Chart   -->
+    <script>
+        function drawForecastChart(comp, team) {
+            
+                
+        // Get correct dataset (colors, data, context canvas)
+        if (team == "all") {
+            var raw_data = forecast_chart[comp];
+            alert(raw_data)
+            alert(raw_data[0])
+            var colors_graph = colors[comp];
+        } else {
+            for (i = 0; i<= teams[comp].length -1; i++) {
+
+                if (team == teams[comp][i]) {
+
+                    var raw_data = [];
+                    raw_data.push(forecast_chart[comp][i]);
+                    
+                    var colors_graph = [colors[comp][i]];
+                    break
+                }
+            }
+            
+        }        
+            
+            
+    
+        var id_string = "forecast_chart_" + comp + "_" + team;
+        var element = document.getElementById(id_string);
+        
+        var ctx = $(element).get(0).getContext("2d");
+        
+
+            var labels = [];
+            for (i = 1; i <= raw_data[0].length - 1; i++) {
+                labels.push(raw_data[0][i][0])
+            }
+
+            var dataset = [];
+            // i = teams
+            for (i = 0; i <= raw_data.length - 1; i++) {
+                var dummy = [];
+                // j = possible standings
+                for (j = 1; j <= raw_data[0].length - 1; j++) {
+
+                    dummy.push(raw_data[i][j][1])
+                }
+
+                dataset.push({
+                    label: raw_data[i][0][1],
+                    fillColor: colors_graph[i],
+                    strokeColor: colors_graph[i],
+                    pointColor: "rgba(220,220,220,0)",
+                    pointStrokeColor: "#fff",
+                    pointHighlightFill: colors_graph[i],
+                    pointHighlightStroke: "rgba(220,220,220,0)",
+                    data: dummy
+                })
+            }
+
+            var data = {
+                labels: labels,
+                datasets: dataset
+            };
+
+            var options = {
+                scaleOverride: true,
+                scaleSteps: 4,
+                scaleStepWidth: 0.25,
+                scaleStartValue: 0,
+                scaleLabel: "<%= value*100 + '%'%>",
+                multiTooltipTemplate: "<%= datasetLabel %>: <%= Math.round(value*1000)/10 + '%' %>",
+                animation: false,
+                
+                scaleFontFamily: "monospace",
+                tooltipFontFamily: "monospace",
+                tooltipTitleFontFamily: "monospace"
+            };
+            var ForecastChart = new Chart(ctx).StackedBar(data, options);
+            toggle_forecast_chart(comp,team);
+
+        }
+    </script>
+    
+    <!--ChangeTeam  -->
+    <script>
+        function changeTeam(comp, cat, team) {
+            if (comp != "rs") {
+                drawForecastChart(comp, team);
+            }
+            // Cat remains the same
+            var cat = history_chart_status[comp]["cat"];
+            drawHistoryChart(comp, cat, team);
+        }
+    </script>    
+</head>
+
+<body>
+    <div class="vertical-center">
+        <div class="container-fluid">
+            <!--Tabs row-->
+            <div class="row">
+                <div class="centering text-center">
+                    <div class="col-md-2 col-lg-2"></div>
+                    <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8 text-center">
+                        <nav class="navbar navbar-inverse">
+                          <div class="container-fluid">
+                            <!-- Collect the nav links, forms, and other content for toggling -->
+                            <div class="collapse navbar-collapse" id="jpl-power-ranking-navbar">
+                              <ul class="nav navbar-nav">
+                                <li><a href="#rs" aria-controls="rs" role="tab" data-toggle="tab">Regulier Seizoen</a></li>
+                                <li class="active"><a href="#poi" aria-controls="poi" role="tab" data-toggle="tab">Play-off I <span class="sr-only">(current)</span></a></li>
+                                <li><a href="#poii_a" aria-controls="poii_a" role="tab" data-toggle="tab">Play-off II a</a></li>
+                                <li><a href="#poii_b" aria-controls="poii_b" role="tab" data-toggle="tab">Play-off II b</a></li>
+                                <li><a href="#poiii" aria-controls="poiii" role="tab" data-toggle="tab">Play-off III</a></li>
+                              </ul>
+                            <p class="navbar-text navbar-right">JPL Power Ranking by <a href="#" class="navbar-link">Exergos</a></p>  
+                            </div><!-- /.navbar-collapse -->
+                          </div><!-- /.container-fluid -->
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            
+            <!--Tab content for every tab-->
+            <div class="tab-content">
+                <!--For every competition-->
+                {% for competition in competitions %}
+                    {% if competition == "poi" %}
+                        <div role="tabpanel" class="tab-pane active" id="{{ competition }}">
+                    {% else %}
+                        <div role="tabpanel" class="tab-pane" id="{{ competition }}">
+                    {% endif %}
+                    <!--Row with tables and forecast chart-->
+                    <div class="row">
+                        <div class="centering text-center">
+                            <!--Div around tables-->
+                            {% if competition == "rs" %}
+                                <div class="col-md-3 col-lg-3"></div>
+                                <div id="{{ "div_table_ranking_" }}{{ competition }}" class="col-md-6 col-lg-6 text-center">
+                            {% else %}
+                                <div class="col-md-2 col-lg-2"></div>
+                                <div id="{{ "div_table_ranking_" }}{{ competition }}" class="col-md-4 col-lg-4 text-center">
+                            {% endif %}
+                                <div class="table_container">
+                                <!--<row>-->
+                                    
+                                    <table cellspacing='0' id="{{ "ranking_" }}{{ competition }}" class="table table-bordered table-hover table-condensed ranking">
+                                        {# Make table headers#}
+                                        <thead>
+                                            <tr>
+                                                {% if competition == "rs" %}
+                                                    {% for header in table_headers|access:competition %}
+                                                        {% if forloop.counter == 2 %}
+                                                            <th class="col-md-3" id="{{ "th_" }}{{ competition }}{{ "_" }}{{ header }}">{{ header }}</th>
+                                                        {% elif forloop.counter == 11 %}
+                                                            <th class="col-md-2" style="text-align:center;" id="{{ "th_" }}{{ competition }}{{ "_" }}{{ header }}">{{ header }}</th>
+                                                        {% else %}
+                                                            <th class="col-md-1" style="text-align:center;" id="{{ "th_" }}{{ competition }}{{ "_" }}{{ header }}">{{ header }}</th>
+                                                        {% endif %}
+                                                    {% endfor %}
+                                                {% else %}
+                                                    {% for header in table_headers|access:competition %}
+                                                        {% if forloop.counter == 2 %}
+                                                            <th class="col-md-4" id="{{ "th_" }}{{ competition }}{{ "_" }}{{ header }}">{{ header }}</th>
+                                                        {% else %}
+                                                            <th class="col-md-1" style="text-align:center;" id="{{ "th_" }}{{ competition }}{{ "_" }}{{ header }}">{{ header }}</th>
+                                                        {% endif %}
+                                                    {% endfor %}
+                                                {% endif %}
+
+                                            </tr>
+                                        </thead>
+                                        {# Fill rest of table with data#}
+                                        <tbody>
+
+                                            {% for values in table_values|access:competition  %}
+                                            <tr id="{{ "tr_" }}{{ competition }}{{ "_team_" }}{{ forloop.counter }}">
+                                                {% for value in values %} {% if forloop.counter == 2 %}
+                                                <td id="{{ "td_" }}{{ competition }}{{ "_" }}{{ table_headers|access:competition | get_at_index:forloop.counter }}{{ "_team_" }}{{ forloop.parentloop.counter }}"><img src="{% static "images/Team Logos/"%}{{ value }}{{ ".png" }}" height="20" width="20" />&nbsp;{{ value }}</td>
+                                                {% else %}
+                                                <td style="text-align:center;" id="{{ "td_" }}{{ competition }}{{ "_" }}{{ table_headers|access:competition | get_at_index:forloop.counter }}{{ "_team_" }}{{ forloop.parentloop.counter }}">{{ value }}</td>
+                                                {% endif %} {% endfor %}
+                                            </tr>
+                                            {% endfor %}
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            
+                            {% if competition != "rs" %}
+                                <div id="{{ "div_table_games_" }}{{ competition }}" class="col-md-4 col-lg-4 text-center">
+                                    <div class="table_container">
+                                        <nav>
+                                            <ul class="pagination">
+                                                {% for speeldagen in upcoming_games_values|access:competition %}
+                                                    {% if forloop.counter == speeldag_actueel|access:competition %}
+                                                        <li id="{{ competition }}{{"_pag_"}}{{ forloop.counter }}" class="active"><a href="#" onclick="speeldagen_pagination('{{ competition }}',{{ forloop.counter }});return false;">{{ forloop.counter }}</a></li>
+                                                    {% else %}
+                                                        <li id="{{ competition }}{{"_pag_"}}{{ forloop.counter }}"><a href="#" onclick="speeldagen_pagination('{{ competition }}',{{ forloop.counter }});return false;">{{ forloop.counter }}</a></li>
+                                                    {% endif %}
+                                                {% endfor %}
+                                            </ul>
+                                        </nav>
+                                        
+                                        {% for speeldagen in upcoming_games_values|access:competition %}
+                                        <table cellspacing='0' id="{{ "games_" }}{{ competition }}{{ "_" }}{{ forloop.counter }}" class="table table-bordered table-hover table-condensed games">
+                                            {# //Make table headers#}
+                
+                                            <thead>
+                                                <tr>
+                                                    {% for header in upcoming_games_headers %}
+                                                        {% if forloop.counter == 2 or forloop.counter == 4 %}
+                                                            <th style="text-align:center;" class="col-md-4">{{ header }}</th>
+                                                        {% elif forloop.counter == 3 %}
+                                                            <th style="text-align:center;" class="col-md-1">{{ header }}</th>
+                                                        {% else %}
+                                                            <th style="text-align:center;" class="col-md-1">{{ header }}</th>
+                                                        {% endif %}
+                                                    {% endfor %}
+                                                </tr>
+                                            </thead>
+                                            {# Fill rest of table with data#}
+                                            <tbody>
+                                                {% for values in speeldagen %}
+                                                <tr>
+                                                    {% for value in values %}
+                                                        {% if forloop.counter == 2 %}
+                                                            <td style="text-align:right;"><img class="floatLeft" src="{% static "images/Team Logos/"%}{{ value }}{{ ".png" }}" height="20" width="20" />{{ value }}</td>
+                                                            {% else %}
+                                                            {% if forloop.counter == 4 %}
+                                                                <td style="text-align:left;">{{ value }}<img class="floatRight" src="{% static "images/Team Logos/"%}{{ value }}{{ ".png" }}" height="20" width="20" /></td>
+                                                            {% else %}
+                                                                <td style="text-align:center;">{{ value }}</td>
+                                                            {% endif %}
+                                                        {% endif %}
+                                                    {% endfor %}
+                                                </tr>
+                                                {% endfor %}
+                                            </tbody>
+                                        </table>
+                                        {% endfor %}
+                                    </div>        
+                                </div> 
+                            {% endif %}
+                        </div>
+                    </div>
+                    
+                    <!--Row with buttons for graph selections-->
+                    <div class="row">
+                        <div class="centering text-center">
+                            <div class="col-md-2 col-lg-2"></div>
+                                <div class="col-md-8 col-lg-8 text-center">
+                                    <div class="button-container">
+                                        <div class="btn-group text-center" role="group" aria-label="...">
+                                            <button type="button" class="btn btn-default" onclick="changeTeam('{{ competition }}','elo','all');return false;">Alle teams</button>
+                                              <div class="btn-group text-center" role="group">
+                                                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Kies team<span class="caret"></span></button>
+                                                <ul class="dropdown-menu" role="menu">
+                                                    {% for team in teams|access:competition %}
+                                                        <li style= "{{ "color:" }}{{ colors|access:competition |get_at_index:forloop.counter |safe}}{{ " !important;" }}
+                                                                    {{ "border-color:" }}{{ colors|access:competition |get_at_index:forloop.counter |safe}}{{ " !important;" }}">
+                                                            <a href="#" onclick="changeTeam('{{ competition }}','elo','{{ team }}');return false;">
+                                                                <img class="floatLeft" src="{% static "images/Team Logos/"%}{{ team }}{{ ".png" }}" height="20" width="20" />&nbsp;
+                                                                {{ team }}
+                                                            </a>
+                                                        </li>
+                                                    {% endfor %}
+                                                </ul>
+                                              </div>
+                                            </div>
+                                    </div>
+                                </div>
+                        </div>
+                    </div>
+                    
+                    <!--Row with history & forecast charts-->
+                    <div class="row">
+                        <div class="centering text-center">
+                            <div class="col-md-2 col-lg-2"></div>
+                            <div class="col-md-5 col-lg-5 text-center">
+                                <div class="history_chart_container">
+                                    <div class="button-container">
+                                        <div class="btn-group text-center" role="group" aria-label="...">
+                                            <!--drawHistoryChart_changeCat('{{ competition }}','elo','all')-->
+                                            <button type="button" class="btn btn-default" onclick="drawHistoryChart_changeCat('{{ competition }}','elo','all');return false;">ELO</button> 
+                                            <button type="button" class="btn btn-default" onclick="drawHistoryChart_changeCat('{{ competition }}','ranking','all');return false;">Ranking</button>
+                                            <button type="button" class="btn btn-default" onclick="drawHistoryChart_changeCat('{{ competition }}','points','all');return false;">Points</button>
+                                        </div>
+                                    </div>
+                                    <canvas id="{{ "history_chart_" }}{{ competition }}{{ "_elo_all" }}" width="700" height="400"></canvas>
+                                    {% for team in teams|access:competition %}
+                                        <canvas id="{{ "history_chart_" }}{{ competition }}{{ "_elo_" }}{{ team }}" width="700" height="400" style="display: none;"></canvas>
+                                    {% endfor %}
+                                </div>
+                                <div class="history_chart_container">
+                                    <canvas id="{{ "history_chart_" }}{{ competition }}{{ "_ranking_all" }}" width="700" height="400" style="display: none;"></canvas>
+                                    {% for team in teams|access:competition %}
+                                        <canvas id="{{ "history_chart_" }}{{ competition }}{{ "_ranking_" }}{{ team }}" width="700" height="400" style="display: none;"></canvas>
+                                    {% endfor %}
+                                </div>
+                                <div class="history_chart_container">
+                                    <canvas id="{{ "history_chart_" }}{{ competition }}{{ "_points_all" }}" width="700" height="400" style="display: none;"></canvas>
+                                    {% for team in teams|access:competition %}
+                                        <canvas id="{{ "history_chart_" }}{{ competition }}{{ "_points_" }}{{ team }}" width="700" height="400" style="display: none;"></canvas>
+                                    {% endfor %}
+                                </div>
+                            </div>
+                                                        
+                            
+                            <!--Div around forecast chart-->
+                            <div id="{{ "div_forecast_" }}{{ competition }}" class="col-md-3 col-lg-3 text-center">
+                                {% if competition != "rs" %}
+                                    <div class="forecast_chart_container">
+                                        <canvas id="{{ "forecast_chart_" }}{{ competition }}{{ "_all" }}" width="400" height="400"></canvas>
+                                        {% for team in teams|access:competition %}
+                                            <canvas id="{{ "forecast_chart_" }}{{ competition }}{{ "_" }}{{ team }}" width="400" height="400" style="display: none;"></canvas>
+                                    {% endfor %}
+                                    </div>
+                                {% endif %}
+                            </div>
+                        </div>
+                </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+    </div>
+</body>
+
+</html>

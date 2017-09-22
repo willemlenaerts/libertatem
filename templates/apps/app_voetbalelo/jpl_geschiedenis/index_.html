@@ -1,0 +1,368 @@
+{% load staticfiles %}
+<head>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script type="text/javascript" src="{% static "apps/app_voetbalelo/jpl_geschiedenis/js/chart.js/Chart.min.js" %}"></script>
+    <script type="text/javascript" src="{% static "apps/app_voetbalelo/jpl_geschiedenis/js/chart.js/Chart.StackedBar.js" %}"></script>
+    
+    <link rel="stylesheet" type="text/css" href="{% static 'apps/app_voetbalelo/jpl_geschiedenis/css/custom.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'apps/app_voetbalelo/jpl_geschiedenis/css/chartist.js/chartist.min.css' %}" />
+    
+    <script type="text/javascript" src="{% static "apps/app_voetbalelo/jpl_geschiedenis/js/chartist.js/chartist.min.js" %}"></script>
+    
+    <script type="text/javascript" src="{% static "apps/app_voetbalelo/jpl_geschiedenis/js/highcharts.js/highcharts.js" %}"></script>
+    <script type="text/javascript" src="{% static "apps/app_voetbalelo/jpl_geschiedenis/js/highcharts.js/highcharts-more.js" %}"></script> 
+
+    <script type="text/javascript" src="{% static "apps/app_voetbalelo/jpl_geschiedenis/js/ddSlick.js/ddSlick.js" %}"></script>     
+        <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    
+     <!--Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+
+    <script type="text/javascript" src="{% static "apps/app_voetbalelo/jpl_geschiedenis/js/bootstrap/bootstrap.min.js" %}"></script>
+    
+    {#    Import moment.js.js to work with ISOformat Dates#}
+    <script src="{% static "apps/app_voetbalelo/jpl_geschiedenis/js/moment.js/moment.min.js" %}"></script>
+
+
+    <script>
+        // {#On document ready, load stuff#}
+        $(document).ready(function() {
+        elo_evolution = {{ elo_evolution | safe}}
+        max_elo_data = {{ max_elo_data | safe}}
+        teams = {{ teams | safe}}
+        dates = {{ dates | safe}}
+        seasons = {{ seasons | safe}}
+        // colors = {{ colors | safe }}
+        
+        team_select = "Anderlecht";
+        for (i = 0;i<teams.length;i++) {
+            if (teams[i] == team_select) {
+                $("#dropdown_list").append('<li><a id="team_' +String(i) +'" href="#" onclick="changeEloChart(this.id);return false;">' +
+                                            '<img class="floatLeft" src="{% static "apps/app_voetbalelo/jpl_geschiedenis/images/Team Logos/"%}' + teams[i] + '.png"' +  'height="20" width="20" />' +
+                                            '&nbsp;' + teams[i] + '</a></li>'
+                    )
+                $("#button_list").html(teams[i] + '  &nbsp;<span class="caret"></span>')
+                
+            } else  {
+                $("#dropdown_list").append('<li><a id="team_' +String(i) +'" href="#" onclick="changeEloChart(this.id);return false;">' +
+                                            '<img class="floatLeft" src="{% static "apps/app_voetbalelo/jpl_geschiedenis/images/Team Logos/"%}' + teams[i] + '.png"' +  'height="20" width="20" />' +
+                                            '&nbsp;' + teams[i] + '</a></li>'
+                    )
+            }
+        }
+        drawEloChart(team_select);
+        });
+</script>
+<script>
+var getClosestValues = function(a, x) {
+    if (x>a[a.length-1] | x<a[0]) {
+        return NaN
+    }
+    var lo = -1, hi = a.length;
+    while (hi - lo > 1) {
+        var mid = Math.round((lo + hi)/2);
+        if (a[mid] <= x) {
+            lo = mid;
+        } else {
+            hi = mid;
+        }
+    }
+    if (a[lo] == x) hi = lo;
+    
+    if (Math.abs(a[lo]-x) < Math.abs(a[hi]-x)) {
+        return [lo,Math.abs(a[lo]-x)]
+    } else {
+        return [hi,Math.abs(a[hi]-x)]
+    }
+    // return [a[lo], a[hi]];
+}
+
+    function max() {
+    var args = Array.prototype.slice.call(arguments);
+    return Math.max.apply(Math, args.filter(function(val) {
+       return !isNaN(val);
+    }));
+}
+</script>
+
+    <script>
+
+    function drawEloChart() {
+    // series = data that will be shown (dates & elo)
+    series = []
+    for (j=0;j<teams.length;j++) {
+        for (i=0;i<seasons.length;i++) {
+            data = []
+            for (k=0;k<elo_evolution[teams[j]][seasons[i]][0].length;k++) {
+               
+                data.push([elo_evolution[teams[j]][seasons[i]][0][k],elo_evolution[teams[j]][seasons[i]][1][k]])
+                
+                    // [elo_evolution[teams[j]][seasons[i]][0][k],elo_evolution[teams[j]][seasons[i]][1][k]]
+                    // {name:teams[j]+seasons[i] + String(k), x: elo_evolution[teams[j]][seasons[i]][0][k], y:elo_evolution[teams[j]][seasons[i]][1][k]} , events: { mouseOver: function () {return false}}
+                }
+            if (teams[j] == team_select) {
+                series.push({name:teams[j]+" " + seasons[i],states: {hover: {enabled: false}},data:data, color:'rgba(50,50,50,0.15)'}) // marker: {symbol: "circle"} ,
+            } else {
+                series.push({name:teams[j]+" " + seasons[i],data:data,states: {hover: {enabled: false}}, marker: {states: {hover: { enabled: false}} }  }) //marker: {states: {hover: { enabled: false}} }  ,events: {  mouseOver: function () {return false} }
+            }
+            
+        }
+    }  
+    // // Max ELO opmaak
+    // for(i=0;i < max_elo_data[team_select].length;i++) {
+    //     series[max_elo_data[team_select][i][0]].data[max_elo_data[team_select][i][1]] = { marker: {
+    //                                                                                         // symbol: 'url(http://www.highcharts.com/demo/gfx/sun.png)',
+    //                                                                                         enabled: true,
+    //                                                                                         // fillColor: '#FF0000',
+    //                                                                                         lineWidth: 0,
+    //                                                                                         radius: 0,
+    //                                                                                         // lineColor: "#FF0000" // inherit from series
+    //                                                                                 },y:series[max_elo_data[team_select][i][0]].data[max_elo_data[team_select][i][1]][1],x: series[max_elo_data[team_select][i][0]].data[max_elo_data[team_select][0][1]][0]}
+    // }                                                           
+     $('#container').highcharts({
+         chart: {
+             type: 'spline',
+             zoomType: 'x',
+             plotBackgroundImage: '',
+            // renderTo: 'container',
+            // Fancy stuff here
+            events: {
+                load: function() {
+                    // Max elo
+                    // for (i=0;i < max_elo_data[team_select].length;i++) {
+                    //     p = this.series[max_elo_data[team_select][i][0]].data[max_elo_data[team_select][i][1]]
+                    //     p.marker = {
+                    //         symbol: 'square',
+                    //         fillColor: "#A0F",
+                    //         lineColor: "A0F0",
+                    //         radius: 100
+                    //     };
+                        
+                    // }
+                }
+            }
+        },
+         credits: {
+            enabled: false
+          },
+        // chart: {
+        //     type: 'spline'
+        // },
+        title: {
+            text: 'ELO Rating Jupiler Pro League Ploegen'
+        },
+        subtitle: {
+            text: 'Een analyse van 20 jaar JPL.'
+        },
+        xAxis: {
+            type: 'datetime',
+            // dateTimeLabelFormats: { // don't display the dummy year
+            //     month: '%e. %b',
+            //     year: '%Y'
+            // },
+            // title: {
+            //     text: 'Date'
+            // },
+            // labels: {
+            //     format: "{value:%Y-%m-%d}"
+            // },
+            min: dates[0],
+            max: dates[dates.length - 1],
+            labels: {
+                    formatter: function() {
+                        if ((moment(this.value).year()-1)%5 == 0) {
+                             date_string = String(moment(this.value).year()-1) + "/" + String(moment(this.value).year())
+                        } else {
+                            date_string = ""
+                        }
+                           
+                        return date_string;
+                    }            
+            },
+
+        },
+        yAxis: {
+              gridLineWidth: 0,
+              minorGridLineWidth: 0,
+            title: {
+                text: 'ELO Rating'
+            },
+            min: 1100,
+            max: 2000,
+            labels: {
+                formatter: function() {
+                        if (this.value == 1500) {
+                            y_label = "<strong>GEM</strong>"
+                        }
+                        else {
+                            y_label = this.value
+                        }
+                        
+                    return y_label;
+                }  
+            }
+        },
+        tooltip: {
+                positioner: function (w,h,point) {
+                    // x_value = 10000*Math.round(this.chart.xAxis[0].toValue(point.plotX,true)/10000)
+                    // // alert([x_value,elo_evolution[team_select][seasons[0]][0]])
+                    // for (i=0;i<seasons.length;i++) {
+                    //     // alert([elo_evolution[team_select][seasons[i]][0],x_value])
+                    //     test  = getClosestValues(elo_evolution[team_select][seasons[i]][0],x_value)
+                    //     // alert(test)
+                    //     if (test.length == 2) {
+                    //         test.push(i)
+                    //         break; 
+                    //     }
+                    //     if (isNaN(test)) {
+                    //         continue;
+                    //     } 
+
+                    // }
+                    
+                    // gameday_index = test[0]
+                    // season_index = test[2]
+                    // // alert([team_select_index,season_index,gameday_index])
+                    // // alert(this.chart.series[team_select_index*seasons.length + season_index].data[gameday_index].y)
+                    
+                    // // Find position of team selected point position
+                    // // for (i=0;i < .length;i++) {
+                    // // alert(this.chart.series.xData.indexOf(this.x))
+                    // // team_select_x = this.chart.series[0].data[0].plotX
+                    // // team_select_y = this.chart.series[0].data[0].plotX
+                    // // Find position of 
+                    // // season_name = this.series.name.split(" ")[this.series.name.split(" ").length-1]
+                    // // this.series[]
+                // return { x: point.plotX, y: this.chart.yAxis[0].toPixels(this.chart.series[team_select_index*seasons.length + season_index].data[gameday_index].y) };
+                return { x: 90, y: 0 };
+            },
+            formatter: function () {
+                // for (i=0;i < teams.length;i++) {
+                //     season_name = this.series.name.replace(teams[i],"")
+                // }
+                // alert(season_name)
+                // alert(season_nam)
+                // if (this.series.name.indexOf(team_select) <= -1 ) {
+                //     // return false
+                // } 
+                // season_name / gameday_index bepalen
+                season_name = this.series.name.split(" ")[this.series.name.split(" ").length-1]
+                gameday_index = this.series.data.indexOf(this.point)
+                
+                
+                var s = '<table><td class="tooltip-elo-one" colspan="2" style="text-align: center"><strong>' + elo_evolution[team_select][season_name][1][gameday_index] + '</strong></td>'
+                
+                // count = 0
+                // for (i=0;i < elo_evolution[team_select][season_name][0].length;i++) {
+                //     if (elo_evolution[team_select][season_name][0][i] == this.x) {
+                //         count = i
+                //         break
+                //     }
+                // }
+                // $.each(this.points, function () {
+                //
+                
+               
+                s += '<tr><td class="tooltip-elo-one" style="text-align: right"><b>' + elo_evolution[team_select][season_name][2][gameday_index]   + '</b></td></tr>' +  
+                '<td class="tooltip-elo-one" style="text-align: right"><b>' + elo_evolution[team_select][season_name][3][gameday_index]   + '</b></td></tr>' + 
+                
+                // Datum
+                '<tr>' +
+                '<td colspan="2" class="tooltip-elo-one" style="text-align: right"><b>' + moment(this.x).calendar()  + '</b></td></tr>'
+
+                            // elo_evolution[team][this.series.name][3] +
+                    // s +=     '<tr><td>Seizoen: </td>' +
+                    //         '<td  style="text-align: center"><b>' + season_name.replace("_","-") + '</b></td></tr>' + 
+                            
+                    //         // Datum
+                    //         '<tr><td>Datum: </td>' +  
+                    //         '<td style="text-align: right"><b>' + moment(this.x).calendar()  + '</b></td></tr>' +
+                            
+                    //         // Wedstrijd
+                    //         '<tr><td>Wedstrijd: </td>' +  
+                    //         '<td style="text-align: right"><b>' + elo_evolution[team_select][season_name][2][gameday_index]   + '</b></td></tr>' +
+                            
+                    //         // Uitslag
+                    //         '<tr><td>Uitslag: </td>' +  
+                    //         '<td style="text-align: right"><b>' + elo_evolution[team_select][season_name][3][gameday_index]   + '</b></td></tr>'
+                    //         // elo_evolution[team][this.series.name][3] +
+                            
+                            
+                    s += '</table>'
+                // });
+                
+
+                return s;
+            },
+            
+            useHTML: true,
+        },
+
+            
+
+
+        plotOptions: {
+            spline: {
+                marker: {
+                    enabled: false,
+                    states: {
+                        hover: {
+                            enabled: false
+                        }
+                    }
+                },
+                color: 'rgba(50,50,50,0.15)',
+                showInLegend: false
+            }
+        },
+
+        series: series
+    });
+};
+ </script>
+ <script>
+     function changeEloChart(clicked_id) {
+        // Get chart object
+         var chart=$("#container").highcharts();
+        
+            old_team_index = teams.indexOf(team_select)*seasons.length
+            new_team_index = parseInt(clicked_id.replace("team_",""))*seasons.length
+         for (i=0;i<seasons.length-1;i++) {
+             // Change last team to transparant
+            //  alert(teams.indexOf(team_select)*seasons.length + i)
+            chart.series[old_team_index + i].options.color = "rgba(50,50,50,0.15)"
+            chart.series[old_team_index + i].update(chart.series[old_team_index + i].options);
+             // Change new team to color
+             chart.series[new_team_index + i].options.color = "FF0000"
+             chart.series[new_team_index + i].update(chart.series[new_team_index + i].options)
+         }
+         
+         // Change team_select global variable
+         team_select = teams[parseInt(clicked_id.replace("team_",""))]
+         
+         // Change button
+         $("#button_list").html(team_select + '  &nbsp;<span class="caret"></span>')
+     }
+ </script>
+</head>
+
+<body>
+    <!--<select id="dropdown" onchange="clickTeam();">-->
+
+<div class="btn-group text-center" role="group">
+
+<button id="button_list" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-expanded="false">Kies team&nbsp;<span class="caret"></span></button>
+
+<ul id= "dropdown_list" class="dropdown-menu scrollable-menu" role="menu">
+</ul>
+
+</div>
+<!--  <div id="dropdown"></div>-->
+ <!--<select id="dropdown" onchange="changeFunc();">-->
+                                                     
+<!--</select>-->
+    <div id="container" style="min-width: 310px; height: 600px; margin: 0 auto"></div>
+    <!--<div class="ct-chart ct-perfect-fourth"></div>-->
+    <!--<canvas id="elo_chart" width="400" height="400"></canvas>-->
+</body>

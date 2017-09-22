@@ -1,0 +1,1067 @@
+
+{#Import static files (images/css/js/...):#}
+{% load staticfiles %}
+{#Import custom made template tags and filters:#}
+{% load app_dodentocht_extra_templates %}
+{#Import csrf token#}
+{% csrf_token %}
+
+<!DOCTYPE html>
+<html>
+<head lang="en">
+{#favicon.ico#}
+{#<link rel="shortcut icon" href="{% static "apps/app_dodentocht/images/favicon.ico" %}" />#}
+<link rel="shortcut icon" href="http://www.iconj.com/ico/z/c/zcqnoavjdh.ico" type="image/x-icon" />
+{#This import jQuery#}
+<script src="{% static "apps/app_dodentocht/js/jQuery/jquery-1.11.1.min.js" %}"></script>
+{#This import everything related to jQuery-UI (autocomplete and others)#}
+<link rel="stylesheet" type="text/css" href="{% static 'apps/app_dodentocht/css/jQuery-UI/jquery-ui.min.css' %}" />
+<script src="{% static "apps/app_dodentocht/js/jQuery-UI/jquery-ui.min.js" %}"></script>
+
+
+
+    <link rel="stylesheet" type="text/css" href="{% static 'apps/app_dodentocht/css/style.css' %}" />
+
+
+{#Tablesorter to make table sortable via columns#}
+<script src="{% static "apps/app_dodentocht/js/tablesorter.js/jquery.tablesorter.min.js" %}"></script>
+{#    Chart.js to make charts#}
+<script src="{% static "apps/app_dodentocht/js/chart.js/Chart.min.js" %}"></script>
+{#Highcharts.js to make gauge chart#}
+<script src="{% static "apps/app_dodentocht/js/highcharts.js/highcharts.js" %}"></script>
+<script src="{% static "apps/app_dodentocht/js/highcharts.js/highcharts-more.js" %}"></script>
+
+{#    Import moment.js.js to work with ISOformat Dates#}
+<script src="{% static "apps/app_dodentocht/js/moment.js/moment.min.js" %}"></script>
+
+{#Import functions to let django work with ajax#}
+<script src="{% static "apps/app_dodentocht/js/django-ajax-csrf/django-ajax-csrf.js" %}"></script>
+
+{#    Import typeahead#}
+{#Options: http://yuilibrary.com/yui/docs/autocomplete/#configuring-autocomplete#}
+<script src="http://yui.yahooapis.com/3.18.1/build/yui/yui-min.js"></script>
+
+<meta charset="UTF-8">
+
+{#    window load and document ready#}
+<script>
+$(window).load(function() {
+    // When the page has loaded
+    $("body").css("visibility",'visible')
+});
+{#On document ready, load stuff#}
+$(document).ready(function(){
+    $("#dodentocht_table").tablesorter({
+    });
+
+    // Get data from first load
+    names = {{ names | safe }};
+    names_selected = {{ names_selected | safe }};
+    names_selected_position = {{ names_selected_position }};
+    participants = {{ participants | safe }};
+    posts = {{ posts | safe }};
+    speed = {{ speed }};
+    speed_comp = {{ speed_comp }};
+    time_graph = {{ time_graph | safe }};
+    time_graph_comp = {{ time_graph_comp | safe }};
+    time = {{ time | safe }};
+    time_comp = {{ time_comp | safe }};
+    km = {{ km }};
+    time_total = {{ time_total | safe }};
+    speed_total = {{ speed_total }};
+    time_comp_total = {{ time_comp_total | safe }};
+    speed_comp_total = {{ speed_comp_total }};
+    opgaves = {{ opgaves }};
+    inrace = {{ inrace }};
+
+    // Set title
+    document.title = names_selected[0];
+
+    // Define color schemes (equivalent to scss file)
+    white = "rgba(255, 255, 255, 0.9)";
+    neutral_color = "rgba(214, 213, 213, 1)";
+    neutral_color_opac = "rgba(214, 213, 213, 0.2)";
+    your_name_color = "rgba(130, 201, 119, 1)";
+    your_name_color_opac= "rgba(130, 201, 119, 0.2)";
+    your_name_color_opac_2= "rgba(130, 201, 119, 0.7)";
+    comp_name_color = "rgba(110, 177, 210, 1)";
+    comp_name_color_opac = "rgba(110, 177, 210, 0.2)";
+    comp_name_color_opac_2 = "rgba(110, 177, 210, 0.7)";
+
+
+    colors_neutral = [neutral_color,neutral_color_opac];
+    colors_your_name = [your_name_color,your_name_color_opac];
+    colors_comp_name = [comp_name_color,comp_name_color_opac];
+
+    colors = [colors_your_name,colors_comp_name];
+
+
+
+    createRadarchart(colors,speed,speed_comp,posts);
+    createLinechart(colors,time_graph,time_graph_comp);
+
+    // Change table data in javascript
+    // Slow, can be fixed by writing better prepared data into database
+    // For example: don't write numbers, but write varchar to database
+    fillTable(names_selected,names_selected_position,participants, time_total, speed_total, time_comp_total,speed_comp_total, posts,km,time,speed,time_comp,speed_comp, opgaves, inrace);
+
+    // Do css stuff in javascript (mainly vertical centralizing)
+    // Create Gaugechart after this!
+    javascript_css();
+
+    if (names_selected[1] == "Gemiddeld") {
+        createGaugechart(names_selected, names_selected_position,participants)
+    }
+    else {
+        createGaugechart_comp(names_selected, names_selected_position,participants)
+    }
+
+    // Add 3 attributes to input form (this eliminates need for label to ask for "name?")
+    $('#id_your_name_1').attr("value",names_selected[0]);
+    $('#id_your_name_1').attr("onfocus","make_blank(this);");
+    $('#id_your_name_1').attr("onblur","restore_placeholder_your_name(this);");
+
+    if (names_selected[1] == "Gemiddeld") {
+        comp_string = 'Vergelijk met?';
+    } else {
+        comp_string = names_selected[1];
+    }
+    $('#id_your_name_2').attr("value",comp_string);
+    $('#id_your_name_2').attr("onfocus","make_blank(this);");
+    $('#id_your_name_2').attr("onblur","restore_placeholder_comp(this);");
+
+    // Set autocomplete widget from YUI
+    // HTML template string for autocomplete results (class defined in css)
+    var nameTemplate =
+            '<div class="autocomplete_results">' +
+            '{name}' +
+            '</div>';
+
+    // YUI autocomplete function
+    YUI().use('autocomplete', 'autocomplete-filters', 'autocomplete-highlighters', function (Y) {
+        // Make formatter that will use the nameTemplate to style the results
+        function nameFormatter(query, results) {
+            // Iterate over the array of name result objects and return an
+            // array of HTML strings.
+            return Y.Array.map(results, function (result) {
+                var name = result.raw;
+
+                // Use string substitution to fill out the name template and
+                // return an HTML string for this result.
+                return Y.Lang.sub(nameTemplate, {
+                    name: name
+                });
+            });
+        }
+
+        // Add YUI autocomplete to input box 1
+        Y.one('#id_your_name_1').plug(Y.Plugin.AutoComplete, {
+            resultFormatter : nameFormatter,
+            resultFilters    : 'phraseMatch',
+            resultHighlighter: 'phraseMatch',
+            source           : names,
+            maxResults: 10,
+            minQueryLength: 3
+        });
+
+        // Add YUI autocomplete to input box 2
+        Y.one('#id_your_name_2').plug(Y.Plugin.AutoComplete, {
+            resultFormatter : nameFormatter,
+            resultFilters    : 'phraseMatch',
+            resultHighlighter: 'phraseMatch',
+            source           : names,
+            maxResults: 10,
+            minQueryLength: 3
+        });
+    });
+
+    // AJAX communication input box 1
+    $('#form_your_name').on('submit', function(e)  {
+        e.preventDefault();
+
+        // Hide stuff
+        $("#gauge_chart_wrapper").css("display",'none');
+        $("#wrapper").css("display",'none');
+
+        // Show stuff
+        $("#loading").css("margin-top",($(window).height() - $("#loading").height())/2 - $("#header_wrapper").height());
+        $('#loading').css("display","block");
+        $.ajax({
+
+            data: {
+                your_name: $('#id_your_name_1').val(),
+                form_name: "form_your_name"
+            },
+            dataType: 'json',
+            type: $(this).attr('method'), // GET or POST
+            url: $(this).attr('action'), // the file to call
+            success: function(result) {
+                // Get data from first load
+                names = $.parseJSON(result["names"]);
+                names_selected = $.parseJSON(result["names_selected"]);
+                names_selected_position = $.parseJSON(result["names_selected_position"]);
+                participants = $.parseJSON(result["participants"]);
+                posts = $.parseJSON(result["posts"]);
+                speed = $.parseJSON(result["speed"]);
+                speed_comp = $.parseJSON(result["speed_comp"]);
+                time_graph = $.parseJSON(result["time_graph"]);
+                time_graph_comp = $.parseJSON(result["time_graph_comp"]);
+                time = $.parseJSON(result["time"]);
+                time_comp = $.parseJSON(result["time_comp"]);
+                km = $.parseJSON(result["km"]);
+                time_total = $.parseJSON(result["time_total"]);
+                speed_total = $.parseJSON(result["speed_total"]);
+                time_comp_total = $.parseJSON(result["time_comp_total"]);
+                speed_comp_total = $.parseJSON(result["speed_comp_total"]);
+                opgaves = $.parseJSON(result["opgaves"]);
+                inrace = $.parseJSON(result["inrace"]);
+
+                // Set title
+                document.title = names_selected[0];
+
+                createRadarchart(colors,speed,speed_comp,posts);
+                createLinechart(colors,time_graph,time_graph_comp);
+
+                if (names_selected[1] == "Gemiddeld") {
+                    createGaugechart(names_selected, names_selected_position,participants)
+                }
+                else {
+                    createGaugechart_comp(names_selected, names_selected_position,participants)
+                }
+                fillTable(names_selected,names_selected_position,participants, time_total, speed_total, time_comp_total,speed_comp_total, posts,km,time,speed,time_comp,speed_comp, opgaves, inrace);
+
+                // Do css stuff in javascript (mainly vertical centralizing)
+                // Hide stuff
+                $('#loading').css("display","none");
+                // Show stuff
+                $("#gauge_chart_wrapper").css("display",'block');
+                $("#wrapper").css("display",'inline-block');
+                javascript_css();
+
+                // Add 3 attributes to input form (this eliminates need for label to ask for "name?")
+                $('#id_your_name_1').attr("value",names_selected[0]);
+                $('#id_your_name_1').attr("onfocus","make_blank(this);");
+                $('#id_your_name_1').attr("onblur","restore_placeholder_your_name(this);");
+
+                if (names_selected[1] == "Gemiddeld") {
+                    comp_string = 'Vergelijk met?';
+                } else {
+                    comp_string = names_selected[1];
+                }
+                $('#id_your_name_2').attr("value",comp_string);
+                $('#id_your_name_2').attr("onfocus","make_blank(this);");
+                $('#id_your_name_2').attr("onblur","restore_placeholder_comp(this);");
+            }
+        });
+    });
+
+    // AJAX communication input box 2
+    $('#form_compare').on('submit', function(event)  {
+        event.preventDefault();
+
+        // Hide stuff
+        $("#gauge_chart_wrapper").css("display",'none');
+        $("#wrapper").css("display",'none');
+
+        // Show stuff
+        $("#loading").css("margin-top",($(window).height() - $("#loading").height())/2 - $("#header_wrapper").height());
+        $('#loading').css("display","block");
+
+        $.ajax({
+            data: {
+                your_name: $('#id_your_name_2').val(),
+                form_name: "form_compare"
+            },
+            dataType: 'json',
+            type: $(this).attr('method'), // GET or POST
+            url: $(this).attr('action'), // the file to call
+            success: function(result) {
+                // Get data from first load
+                names = $.parseJSON(result["names"]);
+                names_selected = $.parseJSON(result["names_selected"]);
+                names_selected_position = $.parseJSON(result["names_selected_position"]);
+                participants = $.parseJSON(result["participants"]);
+                posts = $.parseJSON(result["posts"]);
+                speed = $.parseJSON(result["speed"]);
+                speed_comp = $.parseJSON(result["speed_comp"]);
+                time_graph = $.parseJSON(result["time_graph"]);
+                time_graph_comp = $.parseJSON(result["time_graph_comp"]);
+                time = $.parseJSON(result["time"]);
+                time_comp = $.parseJSON(result["time_comp"]);
+                km = $.parseJSON(result["km"]);
+                time_total = $.parseJSON(result["time_total"]);
+                speed_total = $.parseJSON(result["speed_total"]);
+                time_comp_total = $.parseJSON(result["time_comp_total"]);
+                speed_comp_total = $.parseJSON(result["speed_comp_total"]);
+                opgaves = $.parseJSON(result["opgaves"]);
+                inrace = $.parseJSON(result["inrace"]);
+
+                createRadarchart(colors,speed,speed_comp,posts);
+                createLinechart(colors,time_graph,time_graph_comp);
+
+                if (names_selected[1] == "Gemiddeld") {
+                    createGaugechart(names_selected, names_selected_position,participants)
+                }
+                else {
+                    createGaugechart_comp(names_selected, names_selected_position,participants)
+                }
+                fillTable(names_selected,names_selected_position,participants, time_total, speed_total, time_comp_total,speed_comp_total, posts,km,time,speed,time_comp,speed_comp, opgaves, inrace);
+
+                // Do css stuff in javascript (mainly vertical centralizing)
+                // Hide stuff
+                $('#loading').css("display","none");
+                // Show stuff
+                $("#gauge_chart_wrapper").css("display",'block');
+                $("#wrapper").css("display",'inline-block');
+                javascript_css();
+
+                // Add 3 attributes to input form (this eliminates need for label to ask for "name?")
+                $('#id_your_name_1').attr("value",names_selected[0]);
+                $('#id_your_name_1').attr("onfocus","make_blank(this);");
+                $('#id_your_name_1').attr("onblur","restore_placeholder_your_name(this);");
+
+                if (names_selected[1] == "Gemiddeld") {
+                    comp_string = 'Vergelijk met?';
+                } else {
+                    comp_string = names_selected[1];
+                }
+                $('#id_your_name_2').attr("value",comp_string);
+                $('#id_your_name_2').attr("onfocus","make_blank(this);");
+                $('#id_your_name_2').attr("onblur","restore_placeholder_comp(this);");
+
+            }
+        });
+    });
+});
+</script>
+
+{#    Script om placeholder te creëren in text box die verdwijnt vanaf invullen naam#}
+<script>
+    function make_blank (oInput)
+    {
+        if (!('placeholder' in oInput))
+            oInput.placeholder = oInput.value;
+        if (oInput.value != oInput.placeholder)
+            oInput.value = '';
+    }
+
+    function restore_placeholder_your_name (oInput)
+    {
+        if (oInput.value == '' && 'placeholder' in oInput)
+            oInput.value = names_selected[0];
+    }
+
+    function restore_placeholder_comp (oInput)
+    {
+        if (oInput.value == '' && 'placeholder' in oInput)
+            oInput.value = names_selected[1];
+    }
+</script>
+
+{#    Create Gauge Chart for only your_name#}
+<script>
+    function createGaugechart(names_selected, names_selected_position,participants) {
+
+        $('#gauge_chart_wrapper').highcharts({
+
+                    chart: {
+                        type: 'gauge',
+                        backgroundColor: "rgba(0,0,0,0)",
+                        plotBackgroundColor: "rgba(0,0,0,0)",
+                        plotBorderColor: white,
+                        plotBorderWidth: 0,
+                        plotShadow: false
+                    },
+                    credits: {
+                        enabled: false
+                    },
+                    title: {
+                        text: ''
+                    },
+                    pane: {
+                        startAngle: -140,
+                        endAngle: 140,
+                        background: [{
+                            borderWidth: 0,
+                            backgroundColor: white
+                        }]
+                    },
+
+                    // the value axis
+                    yAxis: {
+                        min: 1,
+                        max: participants[0],
+                        tickPositioner: function () {
+                            {#                            var positions = [1,participants[0]-participants[1]+1,participants[0]];#}
+                            var positions = [participants[0]-2000+1,participants[0]-4000+1,participants[0]-6000+1,participants[0]-8000+1,participants[0]-10000+1];
+                            return positions;
+                        },
+                        labels: {
+                            formatter: function() {
+                                label_format = String((-this.value + participants[0]+1)/1000) + "k";
+                                return label_format ;
+                            },
+                            style: {"color":"#000","fontFamily": "monospace, monospace","fontWeight":"normal","fontSize":"12px"}
+                        },
+                        title: {
+                            text: ''
+                        },
+                        plotBands: [{
+                            from: 1,
+                            to: participants[0]-participants[1],
+                            color: '#DF5353' // red
+                        }, {
+                            from: participants[0]-participants[1],
+                            to: participants[0],
+                            color: '#55BF3B' // green
+                        }]
+                    },
+
+                    series: [{
+                        name: 'Your-name',
+                        data: [participants[0]-names_selected_position[0]],
+                        {#                        labels: {#}
+                        {#                            data:[names_selected_position[0]]#}
+                        {#                        },#}
+                        dial: {
+                            backgroundColor: your_name_color_opac_2,
+                            baseWidth: 4,
+                            topWidth: 2
+                        },
+                        dataLabels: {
+                            y: 30,
+                            color: your_name_color,
+                            borderColor: your_name_color,
+                            enabled: true,
+                            formatter: function() {
+
+                                return -this.y + participants[0] ;
+                            },
+                            style: {"fontFamily": "monospace, monospace","fontWeight":"bold", "fontSize":"14px"}
+
+                        },
+                        tooltip: {
+                            pointFormat: "<b>" + names_selected[0] + ":</b><b> " + names_selected_position[0] + "</b>/" + participants[0]
+                        }
+                    }]
+                },
+
+                // Add some life
+                function (chart) {
+                    if (!chart.renderer.forExport) {
+                    }
+                });
+    }
+</script>
+
+{#    Create Gauge Chart for compare#}
+<script>
+    function createGaugechart_comp(names_selected, names_selected_position,participants) {
+
+        $('#gauge_chart_wrapper').highcharts({
+
+                    chart: {
+                        type: 'gauge',
+                        backgroundColor: "rgba(0,0,0,0)",
+                        plotBackgroundColor: "rgba(0,0,0,0)",
+                        plotBorderColor: white,
+                        plotBorderWidth: 0,
+                        plotShadow: false
+                    },
+                    credits: {
+                        enabled: false
+                    },
+                    title: {
+                        text: ''
+                    },
+                    pane: {
+                        startAngle: -140,
+                        endAngle: 140,
+                        background: [{
+                            borderWidth: 0,
+                            backgroundColor: white
+                        }]
+                    },
+
+                    // the value axis
+                    yAxis: {
+                        min: 1,
+                        max: participants[0],
+
+                        {#                        tickInterval: 1,#}
+                        tickPositioner: function () {
+                            {#                            var positions = [1,participants[0]-participants[1]+1,participants[0]];#}
+                            var positions = [participants[0]-2000+1,participants[0]-4000+1,participants[0]-6000+1,participants[0]-8000+1,participants[0]-10000+1];
+                            return positions;
+                        },
+                        {#                        startOnTick: true,#}
+                        {#                        tickWidth: 0,#}
+                        {#                        tickPosition: 'inside',#}
+                        {#                        tickLength: 0,#}
+                        {#                        tickColor: '#fff',#}
+                        labels: {
+                            {#                            step: 1,#}
+                            {#                            distance: -30,#}
+                            {#                            rotation: 0,#}
+                            formatter: function() {
+                                label_format = String((-this.value + participants[0]+1)/1000) + "k";
+                                return label_format ;
+                            },
+                            style: {"color":"#000","fontFamily": "monospace, monospace","fontWeight":"normal","fontSize":"12px"}
+
+                        },
+
+
+                        title: {
+                            text: ''
+                        },
+                        plotBands: [{
+                            from: 1,
+                            to: participants[0]-participants[1],
+                            color: '#DF5353' // red
+                        }, {
+                            from: participants[0]-participants[1],
+                            to: participants[0],
+                            color: '#55BF3B' // green
+                        }]
+                    },
+
+                    series: [{
+                        name: 'Your-name',
+                        data: [participants[0]-names_selected_position[0]],
+                        {#                        labels: {#}
+                        {#                            data:[names_selected_position[0]]#}
+                        {#                        },#}
+                        dial: {
+                            backgroundColor: your_name_color_opac_2,
+                            baseWidth: 4,
+                            topWidth: 2
+                        },
+                        dataLabels: {
+                            y: 30,
+                            color: your_name_color,
+                            borderColor: your_name_color,
+                            enabled: true,
+                            formatter: function() {
+
+                                return -this.y + participants[0] ;
+                            },
+                            style: {"fontFamily": "monospace, monospace","fontWeight":"bold", "fontSize":"14px"}
+
+                        },
+                        tooltip: {
+                            pointFormat: "<b>" + names_selected[0] + ":</b><b> " + names_selected_position[0] + "</b>/" + participants[0]   }
+                    },
+                        {
+                            name: 'Compare',
+                            color: comp_name_color,
+                            data: [participants[0]-names_selected_position[1]],
+                            {#                        labels: {#}
+                            {#                            data:[names_selected_position[0]]#}
+                            {#                        },#}
+                            dial: {
+                                backgroundColor: comp_name_color_opac_2,
+                                baseWidth: 4,
+                                topWidth: 2
+                            },
+                            dataLabels: {
+                                y: 60,
+                                color: comp_name_color,
+                                borderColor: comp_name_color,
+
+                                enabled: true,
+                                formatter: function() {
+
+                                    return -this.y + participants[0] ;
+                                },
+                                style: {"fontFamily": "monospace, monospace","fontWeight":"bold", "fontSize":"14px"}
+                            },
+                            tooltip: {
+                                pointFormat: "<b>" + names_selected[1] + ":</b><b> " + names_selected_position[1] + "</b>/" + participants[0]  }
+                        }]
+                },
+
+                // Add some life
+                function (chart) {
+                    if (!chart.renderer.forExport) {
+                    }
+                });
+    };
+</script>
+
+{#    Create Radar Chart#}
+<script>
+    function createRadarchart(colors,speed,speed_comp,posts) {
+        var scaleSteps = 10;
+        var scaleStartValue = 0;
+        var speedMax = Math.max.apply(Math,speed);
+        var speed_comp_Max = Math.max.apply(Math,speed_comp);
+        var scaleStepWidth = Math.ceil((Math.max(speedMax,speed_comp_Max)/scaleSteps)*10)/10;
+        var data = {
+            labels: posts,
+            datasets: [
+                {
+                    label: "Snelheid",
+                    fillColor: colors[0][1],
+                    strokeColor: colors[0][0],
+                    pointColor: colors[0][0],
+                    pointStrokeColor: "#fff",
+                    pointHighlightFill: "#fff",
+                    pointHighlightStroke: colors[0][0],
+                    data: speed
+                },
+                {
+                    label: "Gemiddelde Snelheid",
+                    fillColor: colors[1][1],
+                    strokeColor: colors[1][0],
+                    pointColor: colors[1][0],
+                    pointStrokeColor: "#fff",
+                    pointHighlightFill: "#fff",
+                    pointHighlightStroke: colors[1][0],
+                    data: speed_comp
+                }
+            ]
+
+        };
+
+        var options = {
+            {#                Go from unix millisecond value back to string, using moment.js.js#}
+            multiTooltipTemplate: "<%=value + ' km/u'%>",
+            {#            make scale#}
+            scaleOverride: true,
+            scaleSteps: scaleSteps,
+            scaleStepWidth: scaleStepWidth,
+            scaleStartValue: scaleStartValue,
+
+            {#            Font#}
+            {#            scaleFontFamily: "'monospace'",#}
+            //String - Point label font declaration
+            pointLabelFontFamily : "'monospace',monospace",
+
+            //String - Point label font weight
+            pointLabelFontStyle : "normal",
+
+            //Number - Point label font size in pixels
+            pointLabelFontSize : 12,
+
+            //String - Point label font colour
+            pointLabelFontColor : "#000",
+
+            tooltipFontFamily: "'monospace',monospace",
+            tooltipFontSize: 12,
+            tooltipFontStyle: "normal",
+            tooltipFontColor: "#fff",
+
+            tooltipTitleFontFamily: "'monospace',monospace",
+            tooltipTitleFontSize: 14,
+            tooltipTitleFontStyle: "normal",
+            tooltipTitleFontColor: "#fff"
+        };
+
+        var ctx = document.getElementById("radar_chart").getContext("2d");
+        var myLineChart = new Chart(ctx).Radar(data,options);
+    }
+</script>
+
+{#    Create Line Chart#}
+<script>
+    function createLinechart(colors,time_graph,time_graph_comp) {
+
+        {#        var time_graph = time_graph;#}
+        {#        var time_graph_comp = time_graph_comp;#}
+        var time_graph_ms = [];
+        var time_graph_comp_ms = [];
+        {#            Count how many posts where not attained by walker#}
+        {#            2015 ( = unix 1420066800) because this was datetime chosen in django code to indicate that walker did not reach post#}
+        count_2015 = 0;
+        count_2015_comp = 0;
+
+        for (i = 0; i < time_graph.length; i++) {
+            {#                Create moment.js.js object, then convert to unix (milliseconds since 1970)#}
+            {#                Graph can be built with numbers.#}
+            {#                Afterwards reconversion to date string using moment.js.js#}
+            time_graph_ms[i] = moment(time_graph[i]).unix();
+            time_graph_comp_ms[i] = moment(time_graph_comp[i]).unix();
+            if (time_graph_ms[i] >= 1420066800) {
+                {#                time_graph_ms[i] = false;#}
+                count_2015 = count_2015 + 1;
+            }
+            if (time_graph_comp_ms[i] >= 1420066800) {
+                {#                time_graph_comp_ms[i] = false;#}
+                count_2015_comp = count_2015_comp + 1;
+            }
+        }
+
+        // Remove data points where participant had abandoned race
+        time_graph_ms = time_graph_ms.splice(0,time_graph_ms.length - count_2015);
+
+        // Remove data points where participant had abandoned race
+        time_graph_comp_ms = time_graph_comp_ms.splice(0,time_graph_comp_ms.length - count_2015_comp);
+
+        var data = {
+            labels: posts,
+            datasets: [
+                {
+                    label: "Tijd",
+                    fillColor: colors[0][1],
+                    strokeColor: colors[0][0],
+                    pointColor: colors[0][0],
+                    pointStrokeColor: "#fff",
+                    pointHighlightFill: "#fff",
+                    pointHighlightStroke: colors[0][0],
+                    data: time_graph_ms
+                },
+                {
+                    label: "Gemiddelde tijd",
+                    fillColor: colors[1][1],
+                    strokeColor: colors[1][0],
+                    pointColor: colors[1][0],
+                    pointStrokeColor: "#fff",
+                    pointHighlightFill: "#fff",
+                    pointHighlightStroke: colors[1][0],
+                    data: time_graph_comp_ms
+                }
+            ]
+        };
+
+        var options = {
+            //Go from unix millisecond value back to string, using moment.js
+
+            // On the scale (y-axis), round to hours (startOf function - see moment.js for documentation)
+            scaleLabel: "<%=moment.unix(value).startOf('hour').format('HH:mm')%>",
+
+            // On the tooltips, give hours and minutes
+            // For the moment, don't show tooltips
+            // Error if we do:
+            // Chart with 2 non finishers, trying to display tooltip where there is no data (the last posts)
+            // Will use cached data (average) to display
+            showTooltips: false,
+            multiTooltipTemplate: "<%=moment.unix(value).format('HH:mm')%>",
+            scaleFontFamily: "'monospace',monospace",
+            scaleFontStyle: "normal",
+            scaleFontColor: "#000",
+            scaleFontSize: 12,
+
+            tooltipFontFamily: "'monospace',monospace",
+            tooltipFontSize: 12,
+            tooltipFontStyle: "normal",
+            tooltipFontColor: "#fff",
+
+            tooltipTitleFontFamily: "'monospace',monospace",
+            tooltipTitleFontSize: 14,
+            tooltipTitleFontStyle: "normal",
+            tooltipTitleFontColor: "#fff"
+        };
+        var ctx = document.getElementById("line_chart").getContext("2d");
+        var myLineChart = new Chart(ctx).Line(data,options);
+    }
+</script>
+
+{#    All css styling done in javascript#}
+<script>
+    function javascript_css() {
+        {#        // Centralize table vertically#}
+        {#        $('#table_wrapper').css('margin-top', ($('#wrapper').height() - $('#table_wrapper').outerHeight())/2);#}
+        {##}
+        {#        // Create equal margin between div's inside wrapper#}
+        {#        $('#radar_chart_wrapper').css('margin-left', $('#radar_chart_wrapper').width()/10);#}
+        {#        $('#radar_chart_wrapper').css('margin-right', $('#radar_chart_wrapper').width()/10);#}
+
+        // Set classes of table rows (for correct colors and hover specs)
+        $('#dodentocht_table tbody tr').each(function() {
+            // First column posts (neutral)
+            $($(this)).find("td:eq(0),td:eq(1),td:eq(2),td:eq(3)").addClass("neutral");
+
+            // Next two columns (your_name)
+            $($(this)).find("td:eq(4),td:eq(5)").addClass("your_name");
+
+            // Next two columns (comp_name)
+            $($(this)).find("td:eq(6),td:eq(7)").addClass("comp_name");
+        });
+
+        // Set header wrapper in middle of page
+        {#        $("#gauge_chart_wrapper").width($("#your_name_wrapper").width() +$("#comp_wrapper").width());#}
+        {#        $("#gauge_chart_wrapper").height(300);#}
+        {#        var margin_left = ($(window).width() -$("#header_wrapper").width())/2;#}
+        {#        $("#gauge_chart_wrapper").css('margin-left',margin_left);#}
+
+        $("#gauge_chart_wrapper").width($("#your_name_wrapper").width() +$("#comp_wrapper").width());
+        $("#gauge_chart_wrapper").height(250);
+
+        {##}
+        {#        // Set width of 2 td's equal to input boxes#}
+        {#        $("#td_your_name").outerWidth($("#your_name_wrapper").width());#}
+        {#        $("#td_comp").outerWidth($("#comp_wrapper").width());#}
+        {##}
+        {#        // Calculate margin to the right#}
+        {#        var gauge_chart_wrapper_width = $("#gauge_chart_wrapper").outerWidth();#}
+        {#        var margin_right = ($(window).width() -$("#your_name_wrapper").width()- $("#comp_wrapper").width())/2;#}
+        {#        var margin_left = $(window).width() - gauge_chart_wrapper_width - margin_right;#}
+        {##}
+        {#        // Set margin left of table#}
+        {#        $('#gauge_chart_wrapper').css('margin-left',margin_left);#}
+        {#        $('#gauge_chart_wrapper').css('margin-top',20);#}
+        {##}
+        {#        // Centralize table vertically#}
+        {#        var margin_top = ($(window).height() - $("#wrapper").height())/2 - $("#header_wrapper").height() - $("#header_table").height();#}
+        {#        $('#wrapper').css('margin-top', margin_top);#}
+
+{#        // Set radar and line chart width as 20pc of window width#}
+{#        height_width_chart = 400/358;#}
+{#        $("#radar_chart").width(0.2*$(window).width());#}
+{#        $("#line_chart").width(0.2*$(window).width());#}
+{#        $("#radar_chart").height(1/height_width_chart*$("#radar_chart").width());#}
+{#        $("#line_chart").height(1/height_width_chart*$("#line_chart").width());#}
+{##}
+{##}
+{#        // Set margin left and right of table wrapper (to support different resolutions)#}
+{#        margin_pc = ($(window).width() - $("#table_wrapper").width() - $("#line_chart_wrapper").width() - $("#radar_chart_wrapper").width())/(2*$(window).width());#}
+{#        alert($(window).width() - $("#table_wrapper").width() - $("#line_chart_wrapper").width() - $("#radar_chart_wrapper").width())#}
+{#        alert(margin_pc)#}
+{#        $("#table_wrapper").css("margin-left",String(margin_pc) + "pc");#}
+{#        $("#table_wrapper").css("margin-right",String(margin_pc) + "pc");#}
+
+    }
+
+</script>
+
+{#    Fill table and fix representation issues#}
+<script>
+    function fillTable(names_selected,names_selected_position,participants, time_total, speed_total, time_comp_total,speed_comp_total, posts,km,time,speed,time_comp,speed_comp, opgaves, inrace) {
+        // Fill header of table
+        $("#th_your_name").html(names_selected[0]);
+        $("#th_comp").html(names_selected[1]);
+
+        // Create 16 rows (dodentocht posts)
+        // Loop over columns
+
+        var r = new Array(), j = -1;
+        for (i=0;i<=posts.length-1;i++) {
+            // Initiate row
+            r[++j] = '<tr id="tr_';
+            r[++j] = String(i+1);
+            r[++j] = '">';
+
+            // Column 1
+            r[++j] = '<td id="td_row_';
+            r[++j] = String(i+1);
+            r[++j] = '_column_1">';
+            r[++j] = posts[i];
+            r[++j] = '</td>';
+
+            // Column 2
+            r[++j] = '<td id="td_row_';
+            r[++j] = String(i+1);
+            r[++j] = '_column_2">';
+            r[++j] = String(km[i]);
+            r[++j] = '</td>';
+
+            // Column 3
+            r[++j] = '<td id="td_row_';
+            r[++j] = String(i+1);
+            r[++j] = '_column_3">';
+            r[++j] = String(inrace[i]);
+            r[++j] = '</td>';
+
+            // Column 4
+            r[++j] = '<td id="td_row_';
+            r[++j] = String(i+1);
+            r[++j] = '_column_4">';
+            r[++j] = String(opgaves[i]);
+            r[++j] = '</td>';
+
+            // Column 5
+            r[++j] = '<td id="td_row_';
+            r[++j] = String(i+1);
+            r[++j] = '_column_5">';
+            r[++j] = time[i];
+            r[++j] = '</td>';
+
+            // Column 6
+            r[++j] = '<td id="td_row_';
+            r[++j] = String(i+1);
+            r[++j] = '_column_6">';
+            r[++j] = String(parseFloat(Math.round(speed[i] * 100) / 100).toFixed(1));
+            r[++j] = '</td>';
+
+            // Column 7
+            r[++j] = '<td id="td_row_';
+            r[++j] = String(i+1);
+            r[++j] = '_column_7">';
+            r[++j] = time_comp[i];
+            r[++j] = '</td>';
+
+            // Column 8
+            r[++j] = '<td id="td_row_';
+            r[++j] = String(i+1);
+            r[++j] = '_column_8">';
+            r[++j] = String(parseFloat(Math.round(speed_comp[i] * 100) / 100).toFixed(1));
+            r[++j] = '</td>';
+
+            // End row
+            r[++j] = '</tr>';
+        }
+
+        // Add last row Totaal
+        r[++j] ='<tr><td id="td_table_totaal"><b>Totaal</b></td><td></td><td id="td_table_totaal_inrace"></td><td id="td_table_totaal_opgaves"></td><td id="td_table_totaal_tijd"></td><td id="td_table_totaal_snelheid"></td><td id="td_table_totaal_tijd_comp"></td><td id="td_table_totaal_snelheid_comp"></td></tr>';
+
+        $('#dodentocht_table tbody').html(r.join(''));
+
+        // Fill footer of table (Totaal)
+        $('#td_table_totaal_inrace').html("<b>" + String(inrace[inrace.length-1])+ "</b>");
+
+        var opgaves_totaal = 0;
+        $.each(opgaves,function() {
+            opgaves_totaal += this;
+        });
+        $('#td_table_totaal_opgaves').html("<b>" + String(opgaves_totaal)+ "</b>");
+
+        // Als deelnemer niet aangekomen, zet "-" in tabel bovenaan
+        if (Math.round(names_selected_position[0]) > Math.round(participants[1]) ) {
+            $('#td_table_totaal_tijd').html("<b>-</b>");
+            $("#td_table_totaal_snelheid").html("<b>-</b>");
+        }
+        else {
+            $('#td_table_totaal_tijd').html('<b>'+time_total+'</b>');
+            $("#td_table_totaal_snelheid").html('<b>'+parseFloat(Math.round(speed_total * 100) / 100).toFixed(1)+'</b>');
+        }
+
+        if (Math.round(names_selected_position[1]) > Math.round(participants[1]) ) {
+            $('#td_table_totaal_tijd_comp').html("<b>-</b>");
+            $("#td_table_totaal_snelheid_comp").html("<b>-</b>");
+        }
+        else {
+            $('#td_table_totaal_tijd_comp').html('<b>'+time_comp_total+'</b>');
+            $("#td_table_totaal_snelheid_comp").html('<b>'+parseFloat(Math.round(speed_comp_total * 100) / 100).toFixed(1)+'</b>');
+        }
+
+        // Fix issues
+        // Check if speed is 0.0, change to - (and change time to -)
+        // First row, always to "-"
+        $("#td_row_1_column_4").html("-");
+        $("#td_row_1_column_6").html("-");
+        $("#td_row_1_column_8").html("-");
+        // Next rows
+        for (i = 2; i <= 16; i++) {
+            // First name
+            td = "#td_row_" + String(i) + "_column_6";
+            if ($(td).html() == "0.0") {
+                $(td).html("-");
+                // Also make time column "-"
+                td = "#td_row_" + String(i) + "_column_5";
+                $(td).html("-");
+            }
+
+            // Second name
+            td = "#td_row_" + String(i) + "_column_8";
+            if ($(td).html() == "0.0") {
+                $(td).html("-");
+                // Also make time column "-"
+                td = "#td_row_" + String(i) + "_column_7";
+                $(td).html("-");
+            }
+
+
+        }
+
+        // If opgaves = 0 ==> "-"
+        for (i = 2; i <= 16; i++) {
+            // First name
+            td = "#td_row_" + String(i) + "_column_4";
+            if ($(td).html() == "0") {
+                $(td).html("-");
+
+            }
+        }
+    }
+
+</script>
+
+{#    Loading signal script#}
+<script>
+    function loading() {
+        $("#header_table").css("display","none");
+        $("#wrapper").css("display","none");
+        $('#loading').css("display","block");
+
+
+        // Keep header wrapper on top
+        $('#header_wrapper').css("margin-top",0);
+
+        // Vertically centralize loading gif
+        var margin_top = ($(window).height()-$('#loading').height())/2 - $("#header_wrapper").height();
+        $('#loading').css("margin-top",margin_top);
+
+    }
+</script>
+
+</head>
+<body>
+
+<div id="header_wrapper" class="container">
+    <div id="your_name_wrapper" style="float:left">
+        <form id="form_your_name" class=" yui3-skin-sam" action="" method="post">
+            {% csrf_token %}
+            {{ form_yourname.as_table }}
+            <input type="submit" name="Change yourname" value="Submit" style="position: absolute; left: -9999px; width: 1px; height: 1px;"/>
+        </form>
+    </div>
+
+
+    <div id="comp_wrapper" style="float:left">
+        <form id="form_compare" class="yui3-skin-sam" action="" method="post">
+            {% csrf_token %}
+            {{ form_comp.as_table }}
+            <input type="submit" name="Change comp" value="Submit" style="position: absolute; left: -9999px; width: 1px; height: 1px;"/>
+        </form>
+    </div>
+</div>
+<br>
+
+<div id="loading" style="display: none"><img src="{% static 'apps/app_dodentocht/images/ajax-loader.gif' %}"></div>
+
+<div id="gauge_chart_wrapper" class="container"></div>
+<br>
+<div id="wrapper" class="container">
+
+    <div id="radar_chart_wrapper" class="left">
+        {#Radar Chart#}
+        <canvas id="radar_chart" width ="400" height="358"></canvas>
+    </div>
+    <div id="table_wrapper" class="center">
+        <table cellspacing='0' id="dodentocht_table" class="tablesorter">
+            {#            Make table headers#}
+            <thead>
+            <tr>
+                <th id ="th_posts_invisible" colspan="4" style="visibility: hidden; background-color: transparent; opacity: 0;"></th>
+                <th id ="th_your_name" class= "your_name" colspan="2"></th>
+                <th id ="th_comp" class= "comp_name" colspan="2"></th>
+
+            </tr>
+            <tr>
+                <th id ="th_posts" class= "neutral">Post</th>
+                <th id ="th_km" class= "neutral">Km</th>
+                <th id ="th_inrace" class= "neutral">In race</th>
+                <th id ="th_opgaves" class= "neutral">Opgaves</th>
+                <th id ="th_time" class= "your_name">Tijd</th>
+                <th id ="th_speed" class= "your_name">Snelheid</th>
+                <th id ="th_time" class= "comp_name">Tijd</th>
+                <th id ="th_speed" class= "comp_name">Snelheid</th>
+            </tr>
+            </thead>
+            {#            Fill rest of table with data#}
+            <tbody>
+
+            </tbody>
+        </table>
+    </div>
+    <div id="line_chart_wrapper" class="right">
+        {#Line Chart#}
+        <canvas id="line_chart" width ="400" height="358"></canvas>
+    </div>
+    {#To make sure div wrapper has correct height#}
+    <div style='clear: both'></div>
+</div>
+</body>
+</html>
+

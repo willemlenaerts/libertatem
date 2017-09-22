@@ -1,0 +1,52 @@
+Game,HomeTeam,AwayTeam,Group,Date,Location
+1,France,Romania,Group A,10/06/2016 21:00,Saint-Denis
+2,Albania,Switzerland,Group A,11/06/2016 15:00,Lens
+3,Wales,Slovakia,Group B,11/06/2016 18:00,Bordeaux
+4,England,Russia,Group B,11/06/2016 21:00,Marseille
+6,Poland,Northern Ireland,Group C,12/06/2016 18:00,Nice
+7,Germany,Ukraine,Group C,12/06/2016 21:00,Lille
+5,Turkey,Croatia,Group D,12/06/2016 15:00,Paris
+8,Spain,Czech Republic,Group D,13/06/2016 15:00,Toulouse
+9,Rep Ireland,Sweden,Group E,13/06/2016 18:00,Saint-Denis
+10,Belgium,Italy,Group E,13/06/2016 21:00,Lyon
+11,Austria,Hungary,Group F,14/06/2016 18:00,Bordeaux
+12,Portugal,Iceland,Group F,14/06/2016 21:00,Saint-Étienne
+14,Romania,Switzerland,Group A,15/06/2016 18:00,Paris
+15,France,Albania,Group A,15/06/2016 15:00,Marseille
+13,Russia,Slovakia,Group B,15/06/2016 15:00,Lille
+16,England,Wales,Group B,16/06/2016 15:00,Lens
+17,Ukraine,Northern Ireland,Group C,16/06/2016 18:00,Lyon
+18,Germany,Poland,Group C,16/06/2016 21:00,Saint-Denis
+20,Czech Republic,Croatia,Group D,17/06/2016 18:00,Saint-Étienne
+21,Spain,Turkey,Group D,17/06/2016 21:00,Nice
+19,Italy,Sweden,Group E,17/06/2016 15:00,Toulouse
+22,Belgium,Rep Ireland,Group E,18/06/2016 15:00,Bordeaux
+23,Iceland,Hungary,Group F,18/06/2016 18:00,Marseille
+24,Portugal,Austria,Group F,18/06/2016 21:00,Paris
+25,Romania,Albania,Group A,19/06/2016 21:00,Lille
+26,Switzerland,France,Group A,19/06/2016 21:00,Lyon
+27,Russia,Wales,Group B,20/06/2016 21:00,Toulouse
+28,Slovakia,England,Group B,20/06/2016 21:00,Saint-Étienne
+30,Northern Ireland,Germany,Group C,21/06/2016 18:00,Paris
+29,Ukraine,Poland,Group C,21/06/2016 18:00,Marseille
+32,Croatia,Spain,Group D,21/06/2016 21:00,Bordeaux
+31,Czech Republic,Turkey,Group D,21/06/2016 21:00,Lens
+35,Italy,Rep Ireland,Group E,22/06/2016 21:00,Lille
+36,Sweden,Belgium,Group E,22/06/2016 21:00,Nice
+34,Hungary,Portugal,Group F,22/06/2016 18:00,Lyon
+33,Iceland,Austria,Group F,22/06/2016 18:00,Saint-Denis
+37,Group A 2,Group C 2,1/8 Final,25/06/2016 15:00,Saint-Étienne
+38,Group B 1,Group A/C/D 3,1/8 Final,25/06/2016 18:00,Paris
+39,Group D 1,Group B/E/F 3,1/8 Final,25/06/2016 21:00,Lens
+40,Group A 1,Group C/D/E 3,1/8 Final,26/06/2016 15:00,Lyon
+41,Group C 1,Group A/B/F 3,1/8 Final,26/06/2016 18:00,Lille
+42,Group F 1,Group E 2,1/8 Final,26/06/2016 21:00,Toulouse
+43,Group E 1,Group D 2,1/8 Final,27/06/2016 18:00,Saint-Denis
+44,Group B 2,Group F 2,1/8 Final,27/06/2016 21:00,Nice
+45,37,39,Quarter Final,30/06/2016 21:00,Marseille
+46,38,42,Quarter Final,1/07/2016 21:00,Lille
+47,41,43,Quarter Final,2/07/2016 21:00,Bordeaux
+48,40,44,Quarter Final,3/07/2016 21:00,Saint-Denis
+49,45,46,Semi Final,6/07/2016 21:00,Lyon
+50,47,48,Semi Final,7/07/2016 21:00,Marseille
+51,49,50,Final,10/07/2016 21:00,Saint-Denis

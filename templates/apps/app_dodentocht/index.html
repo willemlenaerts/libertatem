@@ -1,0 +1,153 @@
+{#Load sass#}
+
+{#Import static files (images/css/js/...):#}
+{% load staticfiles %}
+
+
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    {#favicon.ico#}
+    <link rel="shortcut icon" href="{% static "apps/app_dodentocht/images/favicon.ico" %}" />
+{#<link rel="shortcut icon" href="http://www.iconj.com/ico/z/c/zcqnoavjdh.ico" type="image/x-icon" />#}
+    {#This import jQuery#}
+    <script src="{% static "apps/app_dodentocht/js/jQuery/jquery-1.11.1.min.js" %}"></script>
+
+
+
+        {#        In production use regular css#}
+        <link rel="stylesheet" type="text/css" href="{% static 'apps/app_dodentocht/css/style.css' %}" />
+
+
+    {#    Import typeahead#}
+    {#Options: http://yuilibrary.com/yui/docs/autocomplete/#configuring-autocomplete#}
+    <script src="http://yui.yahooapis.com/3.18.1/build/yui/yui-min.js"></script>
+    
+    {#This import everything related to jQuery-UI#}
+    <link rel="stylesheet" type="text/css" href="{% static 'apps/app_dodentocht/css/jQuery-UI/jquery-ui.min.css' %}" />
+    <script src="{% static "apps/app_dodentocht/js/jQuery-UI/jquery-ui.min.js" %}"></script>
+
+    <meta charset="UTF-8">
+
+    <title>Dodentocht App</title>
+    <script>
+        $(window).load(function() {
+            // When the page has loaded
+            $("body").css("visibility",'visible')
+        });
+        $(document).ready(function(){
+
+            $(window).resize(function(){
+                // First set width of form  = width of input box
+                $('.form-naam').width($('#id_your_name').outerWidth());
+
+                // Now produce css so that form is centered
+                $('.form-naam').css({
+                    position:'absolute',
+                    left: ($(window).width()
+                            - $('.form-naam').outerWidth())/2,
+                    top: ($(window).height()
+                            - $('.form-naam').outerHeight())/2
+                });
+
+            });
+
+            // To initially run the function:
+            $(window).resize();
+
+            // Add 3 attributes to input form (this eliminates need for label to ask for "name?")
+            $('#id_your_name').attr("value","Naam?");
+            $('#id_your_name').attr("onfocus","make_blank(this);");
+            $('#id_your_name').attr("onblur","restore_placeholder(this);");
+
+            $('#input_form').submit(function(){
+                // make input name url string
+                url_string = $("#id_your_name").val().replace(/ /g, '-');
+{#                form_action = "/" + url_string + "/";#}
+                form_action = "/apps/dodentocht/" + "result" + "/";
+                // set form action url
+                $('#input_form').attr('action', form_action);
+
+                // loading image
+                $('#input_form').css("display", "none");
+                $('#loading').css("display", "block");
+
+                // Vertically centralize
+                var margin_top = ($(window).height() - $('#loading').height()) / 2;
+                $('#loading').css("margin-top", margin_top);
+
+                return true;
+            });
+
+            // Initialize autocomplete
+            names = {{ names | safe }};
+
+            // HTML template string
+            var nameTemplate =
+                    '<div class="autocomplete_results">' +
+                    '{name}' +
+                    '</div>';
+
+            YUI().use('autocomplete', 'autocomplete-filters', 'autocomplete-highlighters', function (Y) {
+                function nameFormatter(query, results) {
+                    // Iterate over the array of name result objects and return an
+                    // array of HTML strings.
+                    return Y.Array.map(results, function (result) {
+                        var name = result.raw;
+
+                        // Use string substitution to fill out the name template and
+                        // return an HTML string for this result.
+                        return Y.Lang.sub(nameTemplate, {
+                            name: name
+                        });
+                    });
+                }
+                Y.one('#id_your_name').plug(Y.Plugin.AutoComplete, {
+                    resultFormatter : nameFormatter,
+                    resultFilters    : 'phraseMatch',
+                    resultHighlighter: 'phraseMatch',
+                    source           : names,
+                    maxResults: 10,
+                    minQueryLength: 3
+                });
+            });
+        });
+    </script>
+
+    {#    Nameformatter for autocomplete#}
+    <script>
+
+
+    </script>
+
+    {#    Script om placeholder te creëren in text box die verdwijnt vanaf invullen naam#}
+    <script>
+        function make_blank (oInput)
+        {
+            if (!('placeholder' in oInput))
+                oInput.placeholder = oInput.value;
+            if (oInput.value != oInput.placeholder)
+                oInput.value = '';
+        }
+
+        function restore_placeholder (oInput)
+        {
+            if (oInput.value == '' && 'placeholder' in oInput)
+                oInput.value = 'Naam?';
+        }
+    </script>
+</head>
+
+<body>
+
+{#<input type="text" class="input-naam" value="Naam?" onfocus="make_blank(this);"  onblur="restore_placeholder(this);" />#}
+{#<input type="submit" style="position: absolute; left: -9999px; width: 1px; height: 1px;"/>#}
+<div id="loading" style="display: none"><img src="{% static 'apps/app_dodentocht/images/ajax-loader.gif' %}"></div>
+
+<form id ="input_form" class="form-naam yui3-skin-sam" method="post">
+    {% csrf_token %}
+    {{ form }}
+    <input id="submit_button" type="submit" name="yourname" value="Submit" style="position: absolute; left: -9999px; width: 1px; height: 1px;"/>
+</form>
+</body>
+</html>

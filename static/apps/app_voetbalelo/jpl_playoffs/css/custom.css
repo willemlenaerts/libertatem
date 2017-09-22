@@ -1,0 +1,177 @@
+html, body {
+     background: url("../images/background.jpg") no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    
+    font-family: monospace, monospace;
+    height:100%;
+    margin:0;
+    padding:0;
+}
+
+h1, h2, h3, h4, h5, h6, p, div, table, li, ul, a {
+    font-family: monospace, monospace;
+    font-size:13px;
+}
+
+/*Chart js*/
+#chartjs-tooltip {
+    opacity: 1;
+    position: absolute;
+    background: rgba(0, 0, 0, .7);
+    color: white;
+    padding: 3px;
+    border-radius: 3px;
+    -webkit-transition: all .1s ease;
+    transition: all .1s ease;
+    pointer-events: none;
+    -webkit-transform: translate(-50%, 0);
+    transform: translate(-50%, 0);
+}
+
+.chartjs-tooltip-key{
+   	display:inline-block;
+   	width:10px;
+   	height:10px;
+}
+ 
+.container-fluid{
+  height:100%;
+  display:table;
+  width: 100%;
+  padding: 0;
+}
+ 
+.centering {
+  float:none;
+  margin:0 auto;
+}
+
+.floatRight {
+    float:right;
+}
+
+.floatLeft {
+    float:left;
+}
+
+/*Tabel ranking*/
+.ranking {
+    background-color: rgba(255,239,221,0.8);
+    border-color:rgba(255,239,221,1) !important;
+}
+
+.ranking th,td {
+    border-color:rgba(255,239,221,1) !important;
+}
+
+/*Tabel games*/
+.games {
+    background-color: rgba(192,211,220,0.8);
+    border-color: rgba(192,211,220,1) !important;
+}
+
+.games th,td {
+    border-color: rgba(192,211,220,1) !important;
+}
+
+/*active pagination color*/
+.pagination a {
+    background-color: rgba(192,211,220,0.8) !important;
+    color: rgb(0,0,0) !important;
+    border-color: rgba(192,211,220,1) !important;
+}
+.pagination .active a {
+    background-color: rgba(192,211,220,1) !important;
+    border-color: rgba(192,211,220,1) !important;
+}
+
+/*Team Choice buttons*/
+.team-choice {
+    background-color: rgba(192,211,220,0.8) !important;
+    color: rgb(0,0,0) !important;
+    border-color: rgba(192,211,220,1) !important;
+}
+
+/*Chart border*/
+.forecast_chart_container {
+    background-color:  rgba(198,228,210,0.8) !important;
+    border-color:  rgba(198,228,210,1) !important; 
+}
+
+.history_chart_container {
+    background-color:  rgba(198,228,210,0.8) !important;
+    border-color:  rgba(198,228,210,1) !important;
+}
+
+.team-container {
+    overflow: hidden;
+    background-color:  rgba(198,228,210,0.8) !important;
+    border-color:  rgba(198,228,210,1) !important;
+}
+
+/*Custom button style*/
+
+.btn-custom {
+  background-color: hsl(131, 30%, 9%) !important;
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#294c2f", endColorstr="#101d12");
+  background-image: -khtml-gradient(linear, left top, left bottom, from(#294c2f), to(#101d12));
+  background-image: -moz-linear-gradient(top, #294c2f, #101d12);
+  background-image: -ms-linear-gradient(top, #294c2f, #101d12);
+  background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #294c2f), color-stop(100%, #101d12));
+  background-image: -webkit-linear-gradient(top, #294c2f, #101d12);
+  background-image: -o-linear-gradient(top, #294c2f, #101d12);
+  background-image: linear-gradient(#294c2f, #101d12);
+  border-color: #101d12 #101d12 hsl(131, 30%, 5.5%);
+  color: #fff !important;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.23);
+  -webkit-font-smoothing: antialiased;
+}
+
+
+
+
+
+/*1-2-0-3-4 (lightest to darkest)*/
+
+/*#####  Color Palette by Paletton.com*/
+/*#####  Palette URL: http://paletton.com/#uid=c092Y0C3r0kaVz84jP27qHbeJtFiHpX*/
+
+
+/**** Primary color:*/
+
+/*   shade 0 = #FFB9A8 = rgb(255,185,168) = rgba(255,185,168,1) = rgb0(1,0.725,0.659)*/
+/*   shade 1 = #FFE3DD = rgb(255,227,221) = rgba(255,227,221,1) = rgb0(1,0.89,0.867)*/
+/*   shade 2 = #FFCFC4 = rgb(255,207,196) = rgba(255,207,196,1) = rgb0(1,0.812,0.769)*/
+/*   shade 3 = #EC9480 = rgb(236,148,128) = rgba(236,148,128,1) = rgb0(0.925,0.58,0.502)*/
+/*   shade 4 = #CF6D56 = rgb(207,109, 86) = rgba(207,109, 86,1) = rgb0(0.812,0.427,0.337)*/
+
+/**** Secondary color (1):*/
+
+/*   shade 0 = #FFD6A8 = rgb(255,214,168) = rgba(255,214,168,1) = rgb0(1,0.839,0.659)*/
+/*   shade 1 = #FFEFDD = rgb(255,239,221) = rgba(255,239,221,1) = rgb0(1,0.937,0.867)*/
+/*   shade 2 = #FFE3C4 = rgb(255,227,196) = rgba(255,227,196,1) = rgb0(1,0.89,0.769)*/
+/*   shade 3 = #ECB980 = rgb(236,185,128) = rgba(236,185,128,1) = rgb0(0.925,0.725,0.502)*/
+/*   shade 4 = #CF9656 = rgb(207,150, 86) = rgba(207,150, 86,1) = rgb0(0.812,0.588,0.337)*/
+
+/**** Secondary color (2):*/
+
+/*   shade 0 = #7399AA = rgb(115,153,170) = rgba(115,153,170,1) = rgb0(0.451,0.6,0.667)*/
+/*   shade 1 = #C0D3DC = rgb(192,211,220) = rgba(192,211,220,1) = rgb0(0.753,0.827,0.863)*/
+/*   shade 2 = #99B7C5 = rgb(153,183,197) = rgba(153,183,197,1) = rgb0(0.6,0.718,0.773)*/
+/*   shade 3 = #548195 = rgb( 84,129,149) = rgba( 84,129,149,1) = rgb0(0.329,0.506,0.584)*/
+/*   shade 4 = #3A6C82 = rgb( 58,108,130) = rgba( 58,108,130,1) = rgb0(0.227,0.424,0.51)*/
+
+/**** Complement color:*/
+
+/*   shade 0 = #7DBE98 = rgb(125,190,152) = rgba(125,190,152,1) = rgb0(0.49,0.745,0.596)*/
+/*   shade 1 = #C6E4D2 = rgb(198,228,210) = rgba(198,228,210,1) = rgb0(0.776,0.894,0.824)*/
+/*   shade 2 = #A2D3B6 = rgb(162,211,182) = rgba(162,211,182,1) = rgb0(0.635,0.827,0.714)*/
+/*   shade 3 = #5CAA7B = rgb( 92,170,123) = rgba( 92,170,123,1) = rgb0(0.361,0.667,0.482)*/
+/*   shade 4 = #3E9561 = rgb( 62,149, 97) = rgba( 62,149, 97,1) = rgb0(0.243,0.584,0.38)*/
+
+
+/*#####  Generated by Paletton.com (c) 2002-2014*/

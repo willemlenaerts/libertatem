@@ -1,0 +1,37 @@
+{#Import static files (images/css/js/...):#}
+{% load staticfiles %}
+{#Import custom made template tags and filters:#}
+{% load jpl_regulier_templatetags %}
+{#This import css file (static)#}
+
+<link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" />
+<html>
+<head>
+    {#JQuery for basic tools#}
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    {#Google Charts#}
+    <script type="text/javascript" src="https://www.google.com/jsapi"></script>
+    {#Script to load tablesorter, create charts and fill table#}
+    <script type="text/javascript">
+        google.load("visualization", "1", {packages:["corechart"]});
+        google.setOnLoadCallback(drawChart);
+        function drawChart() {
+            {#Create charts#}
+            {#Customize chart using options#}
+            {#https://developers.google.com/chart/interactive/docs/customizing_axes#}
+            var options = {
+                title: 'Game Minute Chances',
+                isStacked: true
+            };
+
+            var data = google.visualization.arrayToDataTable({{ game_chart |safe }});
+
+            var chart = new google.visualization.SteppedAreaChart(document.getElementById('chart_div'));
+            chart.draw(data, options);
+        }
+    </script>
+</head>
+<body>
+<div id="chart_div" style="width: 900px; height: 500px;"></div>
+</body>
+</html>

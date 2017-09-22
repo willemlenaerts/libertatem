@@ -1,0 +1,196 @@
+{% load staticfiles %}
+<head>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script type="text/javascript" src="{% static "apps/app_voetbalelo/jpl_geschiedenis/js/chart.js/Chart.min.js" %}"></script>
+    <script type="text/javascript" src="{% static "apps/app_voetbalelo/jpl_geschiedenis/js/chart.js/Chart.StackedBar.js" %}"></script>
+    
+    <link rel="stylesheet" type="text/css" href="{% static 'apps/app_voetbalelo/jpl_geschiedenis/css/custom.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'apps/app_voetbalelo/jpl_geschiedenis/css/chartist.js/chartist.min.css' %}" />
+    
+    <script type="text/javascript" src="{% static "apps/app_voetbalelo/jpl_geschiedenis/js/chartist.js/chartist.min.js" %}"></script>
+    
+    <script type="text/javascript" src="{% static "apps/app_voetbalelo/jpl_geschiedenis/js/highcharts.js/highcharts.js" %}"></script>
+    <script type="text/javascript" src="{% static "apps/app_voetbalelo/jpl_geschiedenis/js/highcharts.js/highcharts-more.js" %}"></script> 
+    <script src="https://rawgit.com/highslide-software/pattern-fill/master/pattern-fill.js"></script>
+  
+        <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    
+     <!--Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+
+    <script type="text/javascript" src="{% static "apps/app_voetbalelo/jpl_geschiedenis/js/bootstrap/bootstrap.min.js" %}"></script>
+    
+    {#    Import moment.js.js to work with ISOformat Dates#}
+    <script src="{% static "apps/app_voetbalelo/jpl_geschiedenis/js/moment.js/moment.min.js" %}"></script>
+
+
+<script>
+        // {#On document ready, load stuff#}
+        $(document).ready(function() {
+        histogram = {{ histogram | safe}}
+        
+        drawChart();
+        });
+</script>
+
+<script>
+
+    function drawChart() {
+    // series = data that will be shown (dates & elo)
+    series = []
+    data = []
+    for (j=0;j<histogram["datum"].length;j++) {
+        data.push([histogram["datum"][j],histogram["alles"][j]])
+    }
+    series.push({name:"alles",data:data, marker: {symbol: "circle"}})
+    
+    
+    // Chartoptions 
+    chartOptions = {
+         chart: {
+             renderTo: "container",
+             type: 'spline',
+             zoomType: 'x',
+        },
+         credits: {
+            enabled: false
+          },
+        // chart: {
+        //     type: 'spline'
+        // },
+        title: {
+            text: '',
+            style: {
+                        color: "rgba(0,0,0,1)",
+                        fontFamily: "Bitter",
+                        fontSize: 20
+                    }
+        },
+        xAxis: {
+            
+        //     lineWidth: 0,
+            
+        //     // Gridlines
+        //     gridLineWidth: 0.5,
+        //     gridLineColor: "rgba(0,0,0,0.4)",
+            
+        //     // Minor Gridlines
+        //     minorGridLineWidth: 0.5,
+        //     minorGridLineColor: "rgba(0,0,0,0.1)",
+        //     minorTickInterval:  24*3600*2*365*1000, // Two years
+            
+        //     // tickAmount: 4,
+        //     tickWidth: 0,
+        //     tickPositions: [-3000672000000,-2211753600000,-1422835200000,-633916800000,155001600000,943920000000], // 01/01/1996 - 01/01/2001 - ...
+        //     type: 'datetime',
+
+        //     min: dates[0],
+        //     max: dates[dates.length - 1],
+            labels: {
+                formatter: function() {
+                    // date_string = String(moment(this.value).year()+1)
+                    // return date_string
+                        
+                    date_string = String(moment(this.value).month()) + "-" + String(moment(this.value).year())// 
+                
+                        return date_string;
+                    },
+                    style: {
+                        color: "rgba(0,0,0,1)",
+                        fontFamily: "Bitter",
+                        fontSize: 15
+                 }
+            
+
+        }
+        },
+        // yAxis: {
+        //     // gridLineWidth: 0.2,
+        //     minorGridLineWidth: 0.5,
+        //     gridLineColor: "rgba(0,0,0,0.1)",
+        //     // gridLineWidth: 0,
+        //     lineWidth: 0,
+        //      plotLines: [{
+        //         color: "rgba(0,0,0,0.8)",
+        //         width: 0.5,
+        //         value: 1500
+        //     }],
+        //         title: {
+        //         text: ''
+        //     },
+        //     min: 700,
+        //     max: 2300,
+        //     labels: {
+        //         formatter: function() {
+        //                 if (this.value == 1500) {
+        //                     y_label = "<strong>GEM</strong>"
+        //                 }
+        //                 else {
+        //                     y_label = this.value
+        //                 }
+                        
+        //             return y_label;
+        //         },
+        //         style: {
+        //             color: "rgba(0,0,0,1)",
+        //             fontFamily: "Bitter",
+        //             fontSize: 15
+        //     }
+        //     }
+        // },
+        tooltip: {
+            
+            formatter: function () {
+                s = moment(this.x).format("DD-MM-YYYY")
+                // var s = '<table class="tooltip-table"><td colspan="2" style="text-align: center;"><strong>' + this.y + '</strong></td>';
+                // gameday_index = this.series.data.indexOf(this.point)
+                
+                // // Wedstrijd
+                // s += '<tr><td class="tooltip-elo-one"><b>' + elo_evolution[team_select][2][gameday_index]   + '</b></td>' +  
+                // '<td class="tooltip-elo-one" style="text-align: right;"><b>&nbsp;' + elo_evolution[team_select][3][gameday_index]   + '</b></td></tr>' + 
+                
+                // // Datum
+                // '<tr>' +
+                // '<td colspan="2" class="tooltip-elo-one"><b>' + moment(this.x).format("DD-MM-YYYY")  + '</b></td></tr>'
+                            
+                // s += '</table>'
+                // // });
+                
+
+                return s;
+            },
+            
+            useHTML: true,
+        },
+
+        plotOptions: {
+            spline: {
+                marker: {
+                    enabled: false,
+                    states: {
+                        hover: {
+                            enabled: true
+                        }
+                    }
+                },
+                color: 'rgb(50,50,50)',
+                showInLegend: false
+            }
+        },
+
+        series: series
+    };
+    
+    // Draw chart
+    chart1 = new Highcharts.Chart(chartOptions);
+};
+ </script>  
+
+</head>
+
+<body>
+
+<div id="container" style="min-width: 310px; height: 600px; margin: 0 auto"></div>
+
+</body>

@@ -1,0 +1,302 @@
+topo_adm1,wiki_adm1
+Aberdeen,Aberdeen City
+Aberdeenshire,Aberdeenshire
+Anglesey,Isle of Anglesey
+Angus,Angus
+Angus,Angus and Dundee City
+Dundee,Angus and Dundee City
+Antrim,Antrim- Newtownabbey- Lisburn
+Newtownabbey,Antrim- Newtownabbey- Lisburn
+Lisburn,Antrim- Newtownabbey- Lisburn
+Ards,Ards- Castlereagh- Down
+Castlereagh,Ards- Castlereagh- Down
+Down,Ards- Castlereagh- Down
+Ards,Ards- North Down
+North Down,Ards- North Down
+Argyll and Bute,Argyll and Bute
+Armagh,Armagh- Newry and Mourne
+Newry and Mourne,Armagh- Newry and Mourne
+Ballymena,Ballymena- Ballymoney- Moyle
+Ballymoney,Ballymena- Ballymoney- Moyle
+Moyle,Ballymena- Ballymoney- Moyle
+Craigavon,Craigavon- Banbridge
+Banbridge,Craigavon- Banbridge
+Banbridge,Down- Newry and Mourne- Banbridge
+Down,Down- Newry and Mourne- Banbridge
+Newry and Mourne,Down- Newry and Mourne- Banbridge
+Banbridge,Down- Newry and Mourne- Banbridge
+Banbridge,Lisburn- Banbridge
+Lisburn,Lisburn- Banbridge
+Barking and Dagenham,London (Barking and Dagenham and Havering)
+Havering,London (Barking and Dagenham and Havering)
+Barking and Dagenham,London (Barking and Dagenham)
+Sunderland,Tyne and Wear
+South Tyneside,Tyne and Wear
+Gateshead,Tyne and Wear
+North Tyneside,Tyne and Wear
+Newcastle upon Tyne,Tyne and Wear
+Barnet,London (Barnet)
+Bath and North East Somerset,Bath and North East Somerset
+Bedford,Bedfordshire
+Belfast,Belfast- Castlereagh
+Castlereagh,Belfast- Castlereagh
+Belfast,Belfast- Lisburn
+Lisburn,Belfast- Lisburn
+Belfast,Belfast- Newtownabbey
+Newtownabbey,Belfast- Newtownabbey
+Bexley,London (Bexley and Greenwich)
+Greenwich,London (Bexley and Greenwich)
+Bexley,London (Bexley)
+Blaenau Gwent,Blaenau Gwent
+Bradford,West Yorkshire (Bradford)
+Brent,London (Brent and Camden)
+Camden,London (Brent and Camden)
+Brent,London (Brent)
+Bridgend,Bridgend
+Bristol,Bristol
+Bromley,London (Bromley and Lewisham)
+Lewisham,London (Bromley and Lewisham)
+Bromley,London (Bromley)
+Buckinghamshire,Buckinghamshire
+Caerphilly,Caerphilly
+Caerphilly,Caerphilly- Newport
+Newport,Caerphilly- Newport
+Caerphilly,Merthyr Tydfil- Caerphilly
+Merthyr Tydfil,Merthyr Tydfil- Caerphilly
+Calderdale,West Yorkshire (Calderdale)
+Cambridgeshire,Cambridgeshire
+Camden,London (Camden)
+Cardiff,Cardiff
+Carmarthenshire,Carmarthenshire
+Carmarthenshire,Carmarthenshire- Pembrokeshire
+Pembrokeshire,Carmarthenshire- Pembrokeshire
+Carmarthenshire,Carmarthenshire- Swansea
+Swansea,Carmarthenshire- Swansea
+Carrickfergus,Carrickfergus- Larne- Moyle
+Larne,Carrickfergus- Larne- Moyle
+Moyle,Carrickfergus- Larne- Moyle
+Ceredigion,Ceredigion
+Cheshire East,Cheshire
+Cheshire West and Chester,Cheshire
+Wolverhampton,West Midlands
+Dudley,West Midlands
+Walsall,West Midlands
+Sandwell,West Midlands
+Birmingham,West Midlands
+Solihull,West Midlands
+Coventry,West Midlands
+Edinburgh,City of Edinburgh
+Glasgow,Glasgow City
+City,London (City and Westminster)
+Westminster,London (City and Westminster)
+Clackmannanshire,Clackmannanshire and Perth and Kinross
+Perthshire and Kinross,Clackmannanshire and Perth and Kinross
+Coleraine,Coleraine- Londonderry/Derry
+Derry,Coleraine- Londonderry/Derry
+Conwy,Flintshire- Conwy
+Flintshire,Flintshire- Conwy
+Magherafelt,Magherafelt- Cookstown- Dungannon and South Tyrone
+Cookstown,Magherafelt- Cookstown- Dungannon and South Tyrone
+Cornwall,Cornwall
+Croydon,London (Croydon)
+Cumbria,Cumbria
+Denbighshire,Clwyd- Denbighshire
+Denbighshire,Denbighshire
+Derbyshire,Derbyshire
+Derry,Londonderry/Derry
+Devon,Devon
+Dorset,Dorset
+Dumfries and Galloway,Dumfries and Galloway
+Dumfries and Galloway,"Dumfries and Galloway, Scottish Borders and South Lanarkshire"
+Scottish Borders,"Dumfries and Galloway, Scottish Borders and South Lanarkshire"
+South Lanarkshire,"Dumfries and Galloway, Scottish Borders and South Lanarkshire"
+Dungannon,Fermanagh- Dungannon and South Tyrone
+Fermanagh,Fermanagh- Dungannon and South Tyrone
+Durham,County Durham
+Ealing,London (Ealing)
+East Ayrshire,East Ayrshire
+East Ayrshire,East Ayrshire and South Ayrshire
+South Ayrshire,East Ayrshire and South Ayrshire
+East Dunbartonshire,East Dunbartonshire
+East Dunbartonshire,East Dunbartonshire and North Lanarkshire
+North Lanarkshire,East Dunbartonshire and North Lanarkshire
+East Lothian,East Lothian
+East Renfrewshire,East Renfrewshire
+East Sussex,East Sussex
+Eilean Siar,Na h-Eileanan Siar
+Enfield,London (Enfield)
+Essex,Essex
+Falkirk,Falkirk
+Falkirk,West Lothian and Falkirk
+West Lothian,West Lothian and Falkirk
+Fife,Fife
+Flintshire,Flintshire-Wrexham
+Wrexham,Flintshire-Wrexham
+Gloucestershire,Gloucestershire
+Greenwich,London (Greenwich)
+Gwynedd,Gwynedd
+Hackney,London (Hackney)
+Hammersmith and Fulham,London (Hammersmith and Fulham and Kensington and Chelsea)
+Kensington and Chelsea,London (Hammersmith and Fulham and Kensington and Chelsea)
+Hammersmith and Fulham,London (Hammersmith and Fulham)
+Hampshire,Hampshire
+Haringey,London (Haringey)
+Harrow,London (Harrow and Hillingdon)
+Hillingdon,London (Harrow and Hillingdon)
+Harrow,London (Harrow)
+Havering,London (Havering)
+Herefordshire,Herefordshire
+Hertfordshire,Hertfordshire
+Highland,Highland
+Hillingdon,London (Hillingdon)
+Hounslow,London (Hounslow)
+Denbighshire,Clwyd
+Wrexham,Clwyd
+Flintshire,Clwyd
+Inverclyde,Inverclyde
+Isle of Wight,Isle of Wight
+Islington,London (Islington)
+Kensington and Chelsea,London (Kensington and Chelsea)
+Kent,Kent
+Kingston upon Thames,London (Kingston upon Thames and Richmond upon Thames)
+Richmond upon Thames,London (Kingston upon Thames and Richmond upon Thames)
+Kingston upon Thames,London (Kingston upon Thames)
+Kirklees,West Yorkshire (Kirklees)
+Lambeth,London (Lambeth and Southwark)
+Southwark,London (Lambeth and Southwark)
+Lambeth,London (Lambeth)
+Lancashire,Lancashire
+Leeds,West Yorkshire (Leeds and Wakefield)
+Wakefield,West Yorkshire (Leeds and Wakefield)
+Leeds,West Yorkshire (Leeds)
+Leicester,Leicestershire and Rutland
+Rutland,Leicestershire and Rutland
+Leicestershire,Leicestershire
+Lewisham,London (Lewisham)
+Lincolnshire,East Yorkshire & North Lincolnshire
+North East Lincolnshire,East Yorkshire & North Lincolnshire
+North Lincolnshire,East Yorkshire & North Lincolnshire
+Lincolnshire,Lincolnshire
+Manchester,Greater Manchester
+Stockport,Greater Manchester
+Tameside,Greater Manchester
+Oldham,Greater Manchester
+Rochdale,Greater Manchester
+Bury,Greater Manchester
+Bolton,Greater Manchester
+Wigan,Greater Manchester
+Salford,Greater Manchester
+Trafford,Greater Manchester
+Kingston upon Hull,Humberside
+North Lincolnshire,Humberside
+North East Lincolnshire,Humberside
+East Riding of Yorkshire,Humberside
+Merseyside,Merseyside
+Merton,London (Merton)
+Midlothian,Midlothian
+Monmouthshire,Monmouthshire
+Moray,Moray
+Neath Port Talbot,Neath Port Talbot
+Newham,London (Newham)
+Newport,Newport
+Norfolk,Norfolk
+North Ayshire,North Ayrshire
+North East Lincolnshire,North East Lincolnshire
+North Lanarkshire,North Lanarkshire
+North Lincolnshire,North Lincolnshire
+North Somerset,North Somerset
+North Yorkshire,North Yorkshire
+Northamptonshire,Northamptonshire
+Northumberland,Northumberland
+Nottinghamshire,Nottinghamshire
+Omagh,Omagh- Strabane
+Strabane,Omagh- Strabane
+Orkney,Orkney Islands and Shetland Islands
+Shetland Islands,Orkney Islands and Shetland Islands
+Oxfordshire,Oxfordshire
+Pembrokeshire,Pembrokeshire
+Perthshire and Kinross,Perth and Kinross
+Powys,Powys
+Redbridge,London (Redbridge and Waltham Forest)
+Waltham Forest,London (Redbridge and Waltham Forest)
+Redbridge,London (Redbridge)
+Redcar and Cleveland,Cleveland
+Renfrewshire,Renfrewshire
+"Rhondda, Cynon, Taff",Rhondda Cynon Taf
+Richmond upon Thames,London (Richmond upon Thames)
+Scottish Borders,Scottish Borders
+Shropshire,Shropshire
+Somerset,Somerset
+South Ayrshire,North Ayrshire and South Ayrshire
+North Ayshire,North Ayrshire and South Ayrshire
+South Ayrshire,South Yorkshire
+South Gloucestershire,South Gloucestershire
+South Lanarkshire,South Lanarkshire
+Southwark,London (Southwark)
+Staffordshire,Staffordshire
+Stirling,Stirling
+Suffolk,Suffolk
+Surrey,Surrey
+Sutton,London (Sutton)
+Swansea,Swansea
+Torfaen,Torfaen
+Tower Hamlets,London (Tower Hamlets)
+Vale of Glamorgan,Vale of Glamorgan
+Wakefield,West Yorkshire (Wakefield)
+Waltham Forest,London (Waltham Forest)
+Wandsworth,London (Wandsworth)
+Warwickshire,Warwickshire
+West Berkshire,Berkshire
+West Dunbartonshire,West Dunbartonshire
+West Lothian,West Lothian
+West Sussex,West Sussex
+Westminster,London (Westminster)
+Wiltshire,Wiltshire
+Worcestershire,Worcestershire
+Wrexham,Wrexham
+East Riding of Yorkshire,East Yorkshire
+York,North Yorkshire
+Halton,Cheshire
+Derby,Derbyshire
+Barnsley,South Yorkshire
+Brighton and Hove,East Sussex
+Thurrock,Essex
+Blackburn with Darwen,Lancashire
+Swindon,Wiltshire
+Darlington,Country Durham
+Isles of Scilly,Cornwall
+Peterborough,Cambridgeshire
+Wokingham,Berkshire
+Doncaster,South Yorkshire
+Reading,Berkshire
+Luton,Bedfordshire
+Hartlepool,Cleveland
+Stockton-on-Tees,Cleveland
+Limavady,Londonderry/Derry
+Poole,Dorset
+Plymouth,Devon
+Central Bedfordshire,Bedfordshire
+Royal Borough of Windsor and Maidenhead,Berkshire
+Blackpool,Lancashire
+Rotherham,South Yorkshire
+Slough,Berkshire
+Torbay,Devon
+Bracknell Forest,Berkshire
+Knowsley,Merseyside
+Stoke-on-Trent,Staffordshire
+Warrington,Cheshire
+Nottingham,Nottinghamshire
+Sefton,Merseyside
+Sheffield,South Yorkshire
+Milton Keynes,Buckinghamshire
+Bournemouth,Dorset
+Southend-on-Sea,Essex
+Portsmouth,Hampshire
+Medway,Kent
+Telford and Wrekin,Shropshire
+Southampton,Hampshire
+Middlesbrough,Cleveland
+Liverpool,Merseyside
+
+
+

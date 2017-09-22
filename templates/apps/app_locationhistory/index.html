@@ -1,0 +1,130 @@
+{#Import static files (images/css/js/...):#}
+{% load staticfiles %}
+
+<script src="{% static "apps/app_locationhistory/js/leaflet.js" %}"></script>
+<script src="{% static "apps/app_locationhistory/js/leaflet-src.js" %}"></script>
+
+<link rel="stylesheet" type="text/css" href="{% static 'apps/app_locationhistory/css/leaflet.css' %}" />
+<link rel="stylesheet" type="text/css" href="{% static 'apps/app_locationhistory/css/custom.css' %}" />
+
+<div id="map_canvas" style="display: block; height: 100%;"></div>
+<script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
+<script>
+  // Set basic map attributes
+//   var mapOptions = {
+//     zoom: 5,
+//     center: new google.maps.LatLng(50.85,4.35)
+//   };
+// create a map in the "map" div, set the view to a given place and zoom
+var geojson;
+var map = L.map('map_canvas').setView([50.85,4.35], 8);
+
+// add an OpenStreetMap tile layer
+L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+}).addTo(map);
+
+var geojsonFeature = {{ data | safe }};
+// L.geoJson(geojsonFeature).addTo(map);
+
+// Colorcode this shiiiiit
+    function getColor(d) {
+        colors = ['rgb(247,252,253)','rgb(229,245,249)','rgb(204,236,230)','rgb(153,216,201)','rgb(102,194,164)','rgb(65,174,118)','rgb(35,139,69)','rgb(0,109,44)','rgb(0,68,27)'];
+    
+    return d > 0.5 ? colors[8] :
+           d > 0.2  ? colors[7] :
+           d > 0.1  ? colors[6] :
+           d > 0.05  ? colors[5] :
+           d > 0.01   ? colors[4] :
+           d > 0.001   ? colors[3] :
+           d > 0.0001 ? colors[2] :
+           d > 0.00001 ? colors[1] :
+           colors[0];
+}
+
+function style(feature) {
+    return {
+        fillColor: getColor(feature.properties.perc),
+        weight: 2,
+        opacity: 1,
+        color: 'white',
+        dashArray: '3',
+        fillOpacity: 0.7
+    };
+}
+
+// L.geoJson(geojsonFeature, {style: style}).addTo(map);
+
+function highlightFeature(e) {
+    var layer = e.target;
+
+    layer.setStyle({
+        weight: 5,
+        color: '#666',
+        dashArray: '',
+        fillOpacity: 0.7
+    });
+
+    if (!L.Browser.ie && !L.Browser.opera) {
+        layer.bringToFront();
+    }
+    info.update(layer.feature.properties);
+}
+
+function resetHighlight(e) {
+    geojson.resetStyle(e.target);
+    
+    info.update();
+}
+
+function zoomToFeature(e) {
+    map.fitBounds(e.target.getBounds());
+}
+
+function onEachFeature(feature, layer) {
+    layer.on({
+        mouseover: highlightFeature,
+        mouseout: resetHighlight,
+        click: zoomToFeature
+    });
+}
+
+geojson = L.geoJson(geojsonFeature, {
+    style: style,
+    onEachFeature: onEachFeature
+}).addTo(map);
+
+var info = L.control();
+
+info.onAdd = function (map) {
+    this._div = L.DomUtil.create('div', 'info'); // create a div with a class "info"
+    this.update();
+    return this._div;
+};
+
+// method that we will use to update the control based on feature properties passed
+info.update = function (props) {
+    this._div.innerHTML = '<h4>Aantal uren</h4>' +  (props ?
+        '<b>' + props.name + '</b><br />' + props.hours + ' uren</sup>'
+        : 'Beweeg over een gemeente');
+};
+
+info.addTo(map);
+
+
+
+//   var map = new google.maps.Map(document.getElementById('map_canvas'), mapOptions);
+//   map.data.loadGeoJson("{% static 'apps/app_locationhistory/municipalities-belgium.geojson' %}");
+ 
+//  var myLayer = L.geoJson().addTo(map);
+//     myLayer.addData(geojsonFeature);
+//   // Overlay Styles
+//     map.data.setStyle({
+//       fillColor: '#2687bf',
+//       fillOpacity: .3,
+//       strokeWeight: 0
+//     });
+</script>
+<script>
+
+</script>

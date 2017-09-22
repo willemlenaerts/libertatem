@@ -1,0 +1,7 @@
+git add .
+git add .gitignore
+git commit -m "COMMENT"
+git push origin master
+
+opening and adding to .gitignore file:
+open .gitignore

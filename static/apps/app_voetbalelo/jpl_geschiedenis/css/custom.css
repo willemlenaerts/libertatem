@@ -1,0 +1,19 @@
+.scrollable-menu {
+    height: auto;
+    max-height: 200px;
+    overflow-x: hidden;
+}
+
+.tooltip-elo-one {
+    font-size: 10;
+    /*width:400px;*/
+}
+.tooltip-elo-two {
+    font-size: 10;
+    /*width:200px;*/
+}
+
+.tooltip-table {
+    width: auto !important;
+    white-space: nowrap;
+}

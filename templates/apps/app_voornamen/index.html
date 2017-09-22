@@ -1,0 +1,274 @@
+{#Import static files (images/css/js/...):#}
+{% load staticfiles %}
+{#Import csrf token#}
+{% csrf_token %}
+
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+    {#  Jquery #}
+    <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+    {#Options: http://yuilibrary.com/yui/docs/autocomplete/#configuring-autocomplete#}
+    <script src="http://yui.yahooapis.com/3.18.1/build/yui/yui-min.js"></script>
+    <!--{#Import functions to let django work with ajax#}-->
+    <!--<script src="{% static "js/django-ajax-csrf/django-ajax-csrf.js" %}"></script>-->
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+    
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="{% static 'apps/app_voornamen/ladda/ladda-themeless.min.css' %}">
+    
+    <script src="{% static "apps/app_voornamen/ladda/spin.min.js" %}"></script>
+    <script src="{% static "apps/app_voornamen/ladda/ladda.min.js" %}"></script>
+
+    <script>
+        $(window).load(function() {
+            // When the page has loaded
+            $("body").css("visibility",'visible')
+        });
+        
+        $(document).ready(function(){
+            // Cookie ajax 
+            function getCookie(name) {
+            var cookieValue = null;
+            if (document.cookie && document.cookie != '') {
+                var cookies = document.cookie.split(';');
+                for (var i = 0; i < cookies.length; i++) {
+                    var cookie = jQuery.trim(cookies[i]);
+                    // Does this cookie string begin with the name we want?
+                    if (cookie.substring(0, name.length + 1) == (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+        
+        function csrfSafeMethod(method) {
+            // these HTTP methods do not require CSRF protection
+            return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+        }
+        $.ajaxSetup({
+            beforeSend: function(xhr, settings) {
+                if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+                    xhr.setRequestHeader("X-CSRFToken", getCookie("csrftoken") );
+                }
+            }
+        });
+        
+        
+        $("#hoofdzin").hide()
+        $("#table-aantal").hide()
+
+            // Initialize autocomplete
+            namen = {{namen | safe}};
+            // HTML template string
+            var nameTemplate =
+                    '<div class="autocomplete_results">' +
+                    '{name}' +
+                    '</div>';
+
+            YUI().use('autocomplete', 'autocomplete-filters', 'autocomplete-highlighters', function (Y) {
+                function nameFormatter(query, results) {
+                    // Iterate over the array of name result objects and return an
+                    // array of HTML strings.
+                    return Y.Array.map(results, function (result) {
+                        var name = result.raw;
+
+                        // Use string substitution to fill out the name template and
+                        // return an HTML string for this result.
+                        return Y.Lang.sub(nameTemplate, {
+                            name: name
+                        });
+                    });
+                }
+                Y.one('#id_name').plug(Y.Plugin.AutoComplete, {
+                    resultFormatter : nameFormatter,
+                    resultFilters    : 'phraseMatch',
+                    resultHighlighter: 'phraseMatch',
+                    source           : namen,
+                    maxResults: 10,
+                    minQueryLength: 3
+                });
+            });
+            
+        
+
+            // AJAX communication input box 1
+    $('#submit-button').click(function(e)  {
+        // Als naam niet ingevuld, maak border rood en break van functie
+        $('#id_name').css("border-color","");
+        if ($('#id_name').val() == "") {
+            $('#id_name').css("border-color","rgb(238,9,9)");
+            return
+        }
+        
+        e.preventDefault();
+        var l = Ladda.create(this);
+	 	l.start();
+	 	
+	 	$("#hoofdzin").text("")
+        $("#hoofdzin").hide()
+        $("#table-aantal").hide()
+
+        $.ajax({
+            data: {
+                name: $('#id_name').val(),
+                birthyear: $('#id_birthyear').val(),
+                gender: $('#id_gender').val(),
+                location: $('#id_location').val(),
+                form_name: "input_form"
+            },
+            dataType: 'json',
+            type: $("#input_form").attr('method'), // GET or POST
+            url: $("#input_form").attr('action'), // the file to call
+            success: function(result) {
+
+                // Get data from first load
+                rang  = $.parseJSON(result["rang"]);
+                aantal = $.parseJSON(result["aantal"]);
+                aantal_matrix = $.parseJSON(result["aantal_matrix"]);
+                voornamen_location = $.parseJSON(result["voornamen_location"]);
+                locations = $.parseJSON(result["locations"]);
+                voornamen_birthyear = $.parseJSON(result["voornamen_birthyear"]);
+                birthyears = $.parseJSON(result["birthyears"]);
+
+                
+                // Print rang en aantal
+                if ($('#id_gender').val() == "man") {
+                    text_gender = "mannen";
+                } else {
+                    text_gender = "vrouwen";
+                }
+                
+                element_text = "#id_location option[value=" + $('#id_location').val() + "]"
+                text_location = $(element_text).text()
+                
+                
+                if (rang==0) {
+                    $("#hoofdzin").append("Er is geen data die aan de zoekopdracht voldoet.")
+                } else {
+                                    $("#hoofdzin").append($('#id_name').val() +" is in jouw leeftijdscategorie en woonplaats de <strong>"  + String(rang) +"e</strong> meest populaire naam.<br>")
+                if ($('#id_birthyear').val() -2015 < 18) {
+                    $("#hoofdzin").append("Uw bejaardennaam is <strong>"  + voornamen_birthyear[2] + "</strong>.<br>")
+                } else {
+                    if ($('#id_birthyear').val() -2015< 65) {
+                        $("#hoofdzin").append("Uw jongerennaam is <strong>"  + voornamen_birthyear[0] + "</strong>.<br>")
+                        $("#hoofdzin").append("Uw bejaardennaam is <strong>"  + voornamen_birthyear[2] + "</strong>.<br>")
+                    } else {
+                       $("#hoofdzin").append("Uw jongerennaam is <strong>"  + voornamen_birthyear[0] + "</strong>.<br>")
+                    }
+                }
+                
+                if ($('#id_location').val() == "vlaanderen") {
+                    $("#hoofdzin").append("Uw Waalse naam is <strong>"  + voornamen_location[2] + "</strong>.<br>")
+                } else {
+                    $("#hoofdzin").append("Uw Vlaamse naam is <strong>"  + voornamen_location[0] + "</strong>.<br>")
+                }
+                }
+
+                
+                
+                
+                
+        
+                // Tabel aantal voorkomen per leeftijdscategorie en locatie
+                for (i=0;i<=locations.length-1;i++) {
+                    for (j=0;j<=birthyears.length-1;j++) {
+                        $("#" + locations[i] + "_" + birthyears[j]).text(aantal_matrix[i][j])
+                    }
+                }
+
+                l.stop();
+                
+                $("#hoofdzin").show()
+                $("#table-aantal").show()
+
+            },
+            error: function () {
+                alert("Deze voornaam zit niet in de database met de opgegeven parameters.")
+                l.stop();
+      }
+        });
+
+    });
+        });
+    </script>
+    </head>
+    <body>
+        <div class="vertical-center">
+        <div class="container-fluid">
+            <!--Tabs row-->
+            <div class="row">
+                <div class="centering text-center">
+                    <div class="col-md-4 col-lg-4"></div>
+                    <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 text-center">
+        
+                        <form id ="input_form" class="form-naam yui3-skin-sam" action="" method="post">
+                            {% csrf_token %}
+                            <table>
+                            {{ form.as_table}}
+                            </table>
+                            <a id="submit-button" class="btn btn-danger ladda-button" data-style="slide-up" data-size="s"><span class="ladda-label">Check it!</span></a>
+                            <!--<input id="submit_button" type="submit" name="yourname" value="Submit" style="position: absolute; left: -9999px; width: 1px; height: 1px;"/>-->
+                        </form>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="centering text-center">
+                    <div class="col-md-4 col-lg-4"></div>
+                    <div class="col-xs-12 col-sm-12 col-md-4 col-lg-4 text-center">
+        <p id="hoofdzin"></p>
+        
+        <table id="table-aantal" class='table table-bordered table-hover table-condensed'>
+            <tr>
+                <th class='col-md-2'></th>
+                <th class='col-md-2'> < 18</th>
+                <th class='col-md-2'> 18 - 65</th>
+                <th class='col-md-2'> > 65</th>
+                <th class='col-md-2'>Totaal</th>
+            </tr>
+            <tr>
+                <td>Vlaanderen</td>
+                <td id="vl_18"></td>
+                <td id="vl_18_65"></td>
+                <td id="vl_65"></td>
+                <td id="vl_alles"></td>
+            </tr>
+            <tr>
+                <td>Brussel</td>
+                <td id="br_18"></td>
+                <td id="br_18_65"></td>
+                <td id="br_65"></td>
+                <td id="br_alles"></td>
+            </tr>
+            <tr>
+                <td>Wallonië</td>
+                <td id="wal_18"></td>
+                <td id="wal_18_65"></td>
+                <td id="wal_65"></td>
+                <td id="wal_alles"></td>
+            </tr>
+            <tr>
+                <td>België</td>
+                <td id="be_18"></td>
+                <td id="be_18_65"></td>
+                <td id="be_65"></td>
+                <td id="be_alles"></td>
+            </tr>
+    </table>
+                    </div>
+                </div>
+            </div>
+        
+        
+    </body>
+</html>

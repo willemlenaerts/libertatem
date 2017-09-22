@@ -1,0 +1,651 @@
+Country;ADM1;Constituency
+England;Hampshire;Aldershot
+England;West Midlands;Aldridge-Brownhills
+England;Greater Manchester;Altrincham and Sale West
+England;Derbyshire;Amber Valley
+England;West Sussex;Arundel and South Downs
+England;Nottinghamshire;Ashfield
+England;Kent;Ashford
+England;Greater Manchester;Ashton-under-Lyne
+England;Buckinghamshire;Aylesbury
+England;Oxfordshire;Banbury
+England;London (Barking and Dagenham);Barking
+England;South Yorkshire;Barnsley Central
+England;South Yorkshire;Barnsley East
+England;Cumbria;Barrow and Furness
+England;Essex;Basildon and Billericay
+England;Hampshire;Basingstoke
+England;Nottinghamshire;Bassetlaw
+England;Bath and North East Somerset;Bath
+England;West Yorkshire (Kirklees);Batley and Spen
+England;London (Wandsworth);Battersea
+England;Buckinghamshire;Beaconsfield
+England;London (Bromley);Beckenham
+England;Bedfordshire;Bedford
+England;London (Southwark);Bermondsey and Old Southwark
+England;Northumberland;Berwick-upon-Tweed
+England;London (Tower Hamlets);Bethnal Green and Bow
+England;East Yorkshire;Beverley and Holderness
+England;East Sussex;Bexhill and Battle
+England;London (Bexley);Bexleyheath and Crayford
+England;Merseyside;Birkenhead
+England;West Midlands;Birmingham, Edgbaston
+England;West Midlands;Birmingham, Erdington
+England;West Midlands;Birmingham, Hall Green
+England;West Midlands;Birmingham, Hodge Hill
+England;West Midlands;Birmingham, Ladywood
+England;West Midlands;Birmingham, Northfield
+England;West Midlands;Birmingham, Perry Barr
+England;West Midlands;Birmingham, Selly Oak
+England;West Midlands;Birmingham, Yardley
+England;County Durham;Bishop Auckland
+England;Lancashire;Blackburn
+England;Lancashire;Blackpool North and Cleveleys
+England;Lancashire;Blackpool South
+England;Greater Manchester;Blackley and Broughton
+England;Tyne and Wear;Blaydon
+England;Northumberland;Blyth Valley
+England;West Sussex;Bognor Regis and Littlehampton
+England;Derbyshire;Bolsover
+England;Greater Manchester;Bolton North East
+England;Greater Manchester;Bolton South East
+England;Greater Manchester;Bolton West
+England;Merseyside;Bootle
+England;Lincolnshire;Boston and Skegness
+England;Leicestershire;Bosworth
+England;Dorset;Bournemouth East
+England;Dorset;Bournemouth West
+England;Berkshire;Bracknell
+England;West Yorkshire (Bradford);Bradford East
+England;West Yorkshire (Bradford);Bradford South
+England;West Yorkshire (Bradford);Bradford West
+England;Essex;Braintree
+England;London (Brent);Brent Central
+England;London (Brent);Brent North
+England;London (Hounslow);Brentford and Isleworth
+England;Essex;Brentwood and Ongar
+England;Somerset;Bridgwater and West Somerset
+England;East Yorkshire & North Lincolnshire;Brigg and Goole
+England;East Sussex;Brighton, Kemptown
+England;East Sussex;Brighton, Pavilion
+England;Bristol;Bristol East
+England;Bristol;Bristol North West
+England;Bristol;Bristol South
+England;Bristol;Bristol West
+England;Norfolk;Broadland
+England;London (Bromley);Bromley and Chislehurst
+England;Worcestershire;Bromsgrove
+England;Hertfordshire;Broxbourne
+England;Nottinghamshire;Broxtowe
+England;Buckinghamshire;Buckingham
+England;Lancashire;Burnley
+England;Staffordshire;Burton
+England;Greater Manchester;Bury North
+England;Greater Manchester;Bury South
+England;Suffolk;Bury St Edmunds
+England;West Yorkshire (Calderdale);Calder Valley
+England;London (Southwark);Camberwell and Peckham
+England;Cornwall;Camborne and Redruth
+England;Cambridgeshire;Cambridge
+England;Staffordshire;Cannock Chase
+England;Kent;Canterbury
+England;Cumbria;Carlisle
+England;London (Sutton);Carshalton and Wallington
+England;Essex;Castle Point
+England;Devon;Central Devon
+England;Suffolk;Central Suffolk and North Ipswich
+England;Leicestershire;Charnwood
+England;Kent;Chatham and Aylesford
+England;Greater Manchester;Cheadle
+England;Essex;Chelmsford
+England;London (Hammersmith and Fulham and Kensington and Chelsea);Chelsea and Fulham
+England;Gloucestershire;Cheltenham
+England;Buckinghamshire;Chesham and Amersham
+England;Derbyshire;Chesterfield
+England;West Sussex;Chichester
+England;London (Redbridge and Waltham Forest);Chingford and Woodford Green
+England;Wiltshire;Chippenham
+England;London (Barnet);Chipping Barnet
+England;Lancashire;Chorley
+England;Dorset;Christchurch
+England;London (City and Westminster);Cities of London and Westminster
+England;Cheshire;City of Chester
+England;County Durham;City of Durham
+England;Essex;Clacton
+England;North Lincolnshire;Cleethorpes
+England;Essex;Colchester
+England;West Yorkshire (Kirklees);Colne Valley
+England;Cheshire;Congleton
+England;Cumbria;Copeland
+England;Northamptonshire;Corby
+England;West Midlands;Coventry North East
+England;West Midlands;Coventry North West
+England;West Midlands;Coventry South
+England;West Sussex;Crawley
+England;Cheshire;Crewe and Nantwich
+England;London (Croydon);Croydon Central
+England;London (Croydon);Croydon North
+England;London (Croydon);Croydon South
+England;London (Barking and Dagenham and Havering);Dagenham and Rainham
+England;County Durham;Darlington
+England;Kent;Dartford
+England;Northamptonshire;Daventry
+England;Greater Manchester;Denton and Reddish
+England;Derbyshire;Derby North
+England;Derbyshire;Derby South
+England;Derbyshire;Derbyshire Dales
+England;Wiltshire;Devizes
+England;West Yorkshire (Kirklees);Dewsbury
+England;South Yorkshire;Don Valley
+England;South Yorkshire;Doncaster Central
+England;South Yorkshire;Doncaster North
+England;Kent;Dover
+England;West Midlands;Dudley North
+England;West Midlands;Dudley South
+England;London (Lambeth and Southwark);Dulwich and West Norwood
+England;London (Ealing);Ealing Central and Acton
+England;London (Ealing);Ealing North
+England;London (Ealing);Ealing, Southall
+England;County Durham;Easington
+England;Devon;East Devon
+England;London (Newham);East Ham
+England;Hampshire;East Hampshire
+England;Surrey;East Surrey
+England;West Sussex;East Worthing and Shoreham
+England;Humberside;East Yorkshire
+England;East Sussex;Eastbourne
+England;Hampshire;Eastleigh
+England;Cheshire;Eddisbury
+England;London (Enfield);Edmonton
+England;Cheshire;Ellesmere Port and Neston
+England;West Yorkshire (Leeds);Elmet and Rothwell
+England;London (Greenwich);Eltham
+England;London (Enfield);Enfield North
+England;London (Enfield);Enfield, Southgate
+England;Essex;Epping Forest
+England;Surrey;Epsom and Ewell
+England;Derbyshire;Erewash
+England;London (Bexley and Greenwich);Erith and Thamesmead
+England;Surrey;Esher and Walton
+England;Devon;Exeter
+England;Hampshire;Fareham
+England;Kent;Faversham and Mid Kent
+England;London (Hounslow);Feltham and Heston
+England;South Gloucestershire;Filton and Bradley Stoke
+England;London (Barnet);Finchley and Golders Green
+England;Kent;Folkestone and Hythe
+England;Gloucestershire;Forest of Dean
+England;Lancashire;Fylde
+England;Lincolnshire;Gainsborough
+England;Merseyside;Garston and Halewood
+England;Tyne and Wear;Gateshead
+England;Nottinghamshire;Gedling
+England;Kent;Gillingham and Rainham
+England;Gloucestershire;Gloucester
+England;Hampshire;Gosport
+England;Lincolnshire;Grantham and Stamford
+England;Kent;Gravesham
+England;North East Lincolnshire;Great Grimsby
+England;Norfolk;Great Yarmouth
+England;London (Greenwich);Greenwich and Woolwich
+England;Surrey;Guildford
+England;London (Hackney);Hackney North and Stoke Newington
+England;London (Hackney);Hackney South and Shoreditch
+England;West Midlands;Halesowen and Rowley Regis
+England;West Yorkshire (Calderdale);Halifax
+England;Humberside;Haltemprice and Howden
+England;Cheshire;Halton
+England;London (Hammersmith and Fulham);Hammersmith
+England;London (Brent and Camden);Hampstead and Kilburn
+England;Leicestershire;Harborough
+England;Essex;Harlow
+England;North Yorkshire;Harrogate and Knaresborough
+England;London (Harrow);Harrow East
+England;London (Harrow);Harrow West
+England;Cleveland;Hartlepool
+England;Essex;Harwich and North Essex
+England;East Sussex;Hastings and Rye
+England;Hampshire;Havant
+England;London (Hillingdon);Hayes and Harlington
+England;Greater Manchester;Hazel Grove
+England;Hertfordshire;Hemel Hempstead
+England;West Yorkshire (Wakefield);Hemsworth
+England;London (Barnet);Hendon
+England;Oxfordshire;Henley
+England;Herefordshire;Hereford and South Herefordshire
+England;Hertfordshire;Hertford and Stortford
+England;Hertfordshire;Hertsmere
+England;Northumberland;Hexham
+England;Greater Manchester;Heywood and Middleton
+England;Derbyshire;High Peak
+England;Hertfordshire;Hitchin and Harpenden
+England;London (Camden);Holborn and St Pancras
+England;London (Havering);Hornchurch and Upminster
+England;London (Haringey);Hornsey and Wood Green
+England;West Sussex;Horsham
+England;Tyne and Wear;Houghton and Sunderland South
+England;East Sussex;Hove
+England;West Yorkshire (Kirklees);Huddersfield
+England;Cambridgeshire;Huntingdon
+England;Lancashire;Hyndburn
+England;London (Redbridge);Ilford North
+England;London (Redbridge);Ilford South
+England;Suffolk;Ipswich
+England;Isle of Wight;Isle of Wight
+England;London (Islington);Islington North
+England;London (Islington);Islington South and Finsbury
+England;Tyne and Wear;Jarrow
+England;West Yorkshire (Bradford);Keighley
+England;Warwickshire;Kenilworth and Southam
+England;London (Kensington and Chelsea);Kensington
+England;Northamptonshire;Kettering
+England;London (Kingston upon Thames);Kingston and Surbiton
+England;Humberside;Kingston upon Hull East
+England;Humberside;Kingston upon Hull North
+England;Humberside;Kingston upon Hull West and Hessle
+England;South Gloucestershire;Kingswood
+England;Merseyside;Knowsley
+England;Lancashire;Lancaster and Fleetwood
+England;West Yorkshire (Leeds);Leeds Central
+England;West Yorkshire (Leeds);Leeds East
+England;West Yorkshire (Leeds);Leeds North East
+England;West Yorkshire (Leeds);Leeds North West
+England;West Yorkshire (Leeds);Leeds West
+England;Leicestershire;Leicester East
+England;Leicestershire;Leicester South
+England;Leicestershire;Leicester West
+England;Greater Manchester;Leigh
+England;East Sussex;Lewes
+England;London (Lewisham);Lewisham, Deptford
+England;London (Lewisham);Lewisham East
+England;London (Bromley and Lewisham);Lewisham West and Penge
+England;London (Redbridge and Waltham Forest);Leyton and Wanstead
+England;Staffordshire;Lichfield
+England;Lincolnshire;Lincoln
+England;Merseyside;Liverpool, Riverside
+England;Merseyside;Liverpool, Walton
+England;Merseyside;Liverpool, Wavertree
+England;Merseyside;Liverpool, West Derby
+England;Leicestershire;Loughborough
+England;Lincolnshire;Louth and Horncastle
+England;Shropshire;Ludlow
+England;Bedfordshire;Luton North
+England;Bedfordshire;Luton South
+England;Cheshire;Macclesfield
+England;Berkshire;Maidenhead
+England;Kent;Maidstone and The Weald
+England;Greater Manchester;Makerfield
+England;Essex;Maldon
+England;Greater Manchester;Manchester Central
+England;Greater Manchester;Manchester, Gorton
+England;Greater Manchester;Manchester, Withington
+England;Nottinghamshire;Mansfield
+England;Hampshire;Meon Valley
+England;West Midlands;Meriden
+England;Bedfordshire;Mid Bedfordshire
+England;Derbyshire;Mid Derbyshire
+England;Dorset;Mid Dorset and North Poole
+England;Norfolk;Mid Norfolk
+England;West Sussex;Mid Sussex
+England;Worcestershire;Mid Worcestershire
+England;Cleveland;Middlesbrough
+England;Cleveland;Middlesbrough South and East Cleveland
+England;Buckinghamshire;Milton Keynes North
+England;Buckinghamshire;Milton Keynes South
+England;London (Merton);Mitcham and Morden
+England;Surrey;Mole Valley
+England;Lancashire;Morecambe and Lunesdale
+England;West Yorkshire (Leeds and Wakefield);Morley and Outwood
+England;Hampshire;New Forest East
+England;Hampshire;New Forest West
+England;Nottinghamshire;Newark
+England;Berkshire;Newbury
+England;Staffordshire;Newcastle-under-Lyme
+England;Tyne and Wear;Newcastle upon Tyne Central
+England;Tyne and Wear;Newcastle upon Tyne East
+England;Tyne and Wear;Newcastle upon Tyne North
+England;Devon;Newton Abbot
+England;West Yorkshire (Wakefield);Normanton, Pontefract and Castleford
+England;Cornwall;North Cornwall
+England;Devon;North Devon
+England;Dorset;North Dorset
+England;County Durham;North Durham
+England;Bedfordshire;North East Bedfordshire
+England;Cambridgeshire;North East Cambridgeshire
+England;Derbyshire;North East Derbyshire
+England;Hampshire;North East Hampshire
+England;Hertfordshire;North East Hertfordshire
+England;Bath and North East Somerset;North East Somerset
+England;Herefordshire;North Herefordshire
+England;Norfolk;North Norfolk
+England;Shropshire;North Shropshire
+England;North Somerset;North Somerset
+England;Wiltshire;North Swindon
+England;Kent;North Thanet
+England;Tyne and Wear;North Tyneside
+England;Warwickshire;North Warwickshire
+England;Cambridgeshire;North West Cambridgeshire
+England;County Durham;North West Durham
+England;Hampshire;North West Hampshire
+England;Leicestershire;North West Leicestershire
+England;Norfolk;North West Norfolk
+England;Wiltshire;North Wiltshire
+England;Northamptonshire;Northampton North
+England;Northamptonshire;Northampton South
+England;Norfolk;Norwich North
+England;Norfolk;Norwich South
+England;Nottinghamshire;Nottingham East
+England;Nottinghamshire;Nottingham North
+England;Nottinghamshire;Nottingham South
+England;Warwickshire;Nuneaton
+England;London (Bexley);Old Bexley and Sidcup
+England;Greater Manchester;Oldham East and Saddleworth
+England;Greater Manchester;Oldham West and Royton
+England;London (Bromley);Orpington
+England;Oxfordshire;Oxford East
+England;Oxfordshire;Oxford West and Abingdon
+England;Lancashire;Pendle
+England;South Yorkshire;Penistone and Stocksbridge
+England;Cumbria;Penrith and The Border
+England;Cambridgeshire;Peterborough
+England;Devon;Plymouth, Moor View
+England;Devon;Plymouth, Sutton and Devonport
+England;Dorset;Poole
+England;London (Tower Hamlets);Poplar and Limehouse
+England;Hampshire;Portsmouth North
+England;Hampshire;Portsmouth South
+England;Lancashire;Preston
+England;West Yorkshire (Leeds);Pudsey
+England;London (Wandsworth);Putney
+England;Essex;Rayleigh and Wickford
+England;Berkshire;Reading East
+England;Berkshire;Reading West
+England;Cleveland;Redcar
+England;Worcestershire;Redditch
+England;Surrey;Reigate
+England;Lancashire;Ribble Valley
+England;North Yorkshire;Richmond (Yorks)
+England;London (Kingston upon Thames and Richmond upon Thames);Richmond Park
+England;Greater Manchester;Rochdale
+England;Kent;Rochester and Strood
+England;Essex;Rochford and Southend East
+England;London (Havering);Romford
+England;Hampshire;Romsey and Southampton North
+England;Lancashire;Rossendale and Darwen
+England;South Yorkshire;Rother Valley
+England;South Yorkshire;Rotherham
+England;Warwickshire;Rugby
+England;London (Harrow and Hillingdon);Ruislip, Northwood and Pinner
+England;Surrey;Runnymede and Weybridge
+England;Nottinghamshire;Rushcliffe
+England;Leicestershire and Rutland;Rutland and Melton
+England;Essex;Saffron Walden
+England;Wiltshire;Salisbury
+England;Greater Manchester;Salford and Eccles
+England;North Yorkshire;Scarborough and Whitby
+England;North Lincolnshire;Scunthorpe
+England;County Durham;Sedgefield
+England;Merseyside;Sefton Central
+England;North Yorkshire;Selby and Ainsty
+England;Kent;Sevenoaks
+England;South Yorkshire;Sheffield, Brightside and Hillsborough
+England;South Yorkshire;Sheffield Central
+England;South Yorkshire;Sheffield, Hallam
+England;South Yorkshire;Sheffield, Heeley
+England;South Yorkshire;Sheffield South East
+England;Nottinghamshire;Sherwood
+England;West Yorkshire (Bradford);Shipley
+England;Shropshire;Shrewsbury and Atcham
+England;Kent;Sittingbourne and Sheppey
+England;North Yorkshire;Skipton and Ripon
+England;Lincolnshire;Sleaford and North Hykeham
+England;Berkshire;Slough
+England;West Midlands;Solihull
+England;Somerset;Somerton and Frome
+England;Essex;South Basildon and East Thurrock
+England;Cambridgeshire;South Cambridgeshire
+England;Derbyshire;South Derbyshire
+England;Dorset;South Dorset
+England;Cambridgeshire;South East Cambridgeshire
+England;Cornwall;South East Cornwall
+England;Lincolnshire;South Holland and The Deepings
+England;Leicestershire;South Leicestershire
+England;Norfolk;South Norfolk
+England;Northamptonshire;South Northamptonshire
+England;Lancashire;South Ribble
+England;Tyne and Wear;South Shields
+England;Staffordshire;South Staffordshire
+England;Suffolk;South Suffolk
+England;Wiltshire;South Swindon
+England;Kent;South Thanet
+England;Bedfordshire;South West Bedfordshire
+England;Devon;South West Devon
+England;Hertfordshire;South West Hertfordshire
+England;Norfolk;South West Norfolk
+England;Surrey;South West Surrey
+England;Wiltshire;South West Wiltshire
+England;Hampshire;Southampton, Itchen
+England;Hampshire;Southampton, Test
+England;Essex;Southend West
+England;Merseyside;Southport
+England;Surrey;Spelthorne
+England;Hertfordshire;St Albans
+England;Cornwall;St Austell and Newquay
+England;Merseyside;St Helens North
+England;Merseyside;St Helens South and Whiston
+England;Cornwall;St Ives
+England;Staffordshire;Stafford
+England;Staffordshire;Staffordshire Moorlands
+England;Greater Manchester;Stalybridge and Hyde
+England;Hertfordshire;Stevenage
+England;Greater Manchester;Stockport
+England;Cleveland;Stockton North
+England;Cleveland;Stockton South
+England;Staffordshire;Stoke-on-Trent Central
+England;Staffordshire;Stoke-on-Trent North
+England;Staffordshire;Stoke-on-Trent South
+England;Staffordshire;Stone
+England;West Midlands;Stourbridge
+England;Warwickshire;Stratford-on-Avon
+England;London (Lambeth);Streatham
+England;Greater Manchester;Stretford and Urmston
+England;Gloucestershire;Stroud
+England;Suffolk;Suffolk Coastal
+England;Tyne and Wear;Sunderland Central
+England;Surrey;Surrey Heath
+England;London (Sutton);Sutton and Cheam
+England;West Midlands;Sutton Coldfield
+England;Staffordshire;Tamworth
+England;Cheshire;Tatton
+England;Somerset;Taunton Deane
+England;Shropshire;Telford
+England;Gloucestershire;Tewkesbury
+England;Gloucestershire;The Cotswolds
+England;Shropshire;The Wrekin
+England;North Yorkshire;Thirsk and Malton
+England;South Gloucestershire;Thornbury and Yate
+England;Essex;Thurrock
+England;Devon;Tiverton and Honiton
+England;Kent;Tonbridge and Malling
+England;London (Wandsworth);Tooting
+England;Devon;Torbay
+England;Devon;Torridge and West Devon
+England;Devon;Totnes
+England;London (Haringey);Tottenham
+England;Cornwall;Truro and Falmouth
+England;Kent;Tunbridge Wells
+England;London (Richmond upon Thames);Twickenham
+England;Tyne and Wear;Tynemouth
+England;London (Hillingdon);Uxbridge and South Ruislip
+England;London (Lambeth);Vauxhall
+England;West Yorkshire (Wakefield);Wakefield
+England;Merseyside;Wallasey
+England;West Midlands;Walsall North
+England;West Midlands;Walsall South
+England;London (Waltham Forest);Walthamstow
+England;Northumberland;Wansbeck
+England;Oxfordshire;Wantage
+England;West Midlands;Warley
+England;Cheshire;Warrington North
+England;Cheshire;Warrington South
+England;Warwickshire;Warwick and Leamington
+England;Tyne and Wear;Washington and Sunderland West
+England;Hertfordshire;Watford
+England;Suffolk;Waveney
+England;East Sussex;Wealden
+England;Cheshire;Weaver Vale
+England;Northamptonshire;Wellingborough
+England;Somerset;Wells
+England;Hertfordshire;Welwyn Hatfield
+England;South Yorkshire;Wentworth and Dearne
+England;West Midlands;West Bromwich East
+England;West Midlands;West Bromwich West
+England;Dorset;West Dorset
+England;London (Newham);West Ham
+England;Lancashire;West Lancashire
+England;Suffolk;West Suffolk
+England;Worcestershire;West Worcestershire
+England;London (Westminster);Westminster North
+England;Cumbria;Westmorland and Lonsdale
+England;North Somerset;Weston-Super-Mare
+England;Greater Manchester;Wigan
+England;London (Merton);Wimbledon
+England;Hampshire;Winchester
+England;Berkshire;Windsor
+England;Merseyside;Wirral South
+England;Merseyside;Wirral West
+England;Essex;Witham
+England;Oxfordshire;Witney
+England;Surrey;Woking
+England;Berkshire;Wokingham
+England;West Midlands;Wolverhampton North East
+England;West Midlands;Wolverhampton South East
+England;West Midlands;Wolverhampton South West
+England;Worcestershire;Worcester
+England;Cumbria;Workington
+England;Greater Manchester;Worsley and Eccles South
+England;West Sussex;Worthing West
+England;Buckinghamshire;Wycombe
+England;Lancashire;Wyre and Preston North
+England;Worcestershire;Wyre Forest
+England;Greater Manchester;Wythenshawe and Sale East
+England;Somerset;Yeovil
+England;North Yorkshire;York Central
+England;North Yorkshire;York Outer
+Wales;Neath Port Talbot;Aberavon
+Wales;Denbighshire;Aberconwy
+Wales;Flintshire-Wrexham;Alyn and Deeside
+Wales;Gwynedd;Arfon
+Wales;Blaenau Gwent;Blaenau Gwent
+Wales;Powys;Brecon and Radnorshire
+Wales;Bridgend;Bridgend
+Wales;Caerphilly- Newport;Caerphilly
+Wales;Cardiff;Cardiff Central
+Wales;Cardiff;Cardiff North
+Wales;Cardiff;Cardiff South and Penarth
+Wales;Cardiff;Cardiff West
+Wales;Carmarthenshire;Carmarthen East and Dinefwr
+Wales;Carmarthenshire- Pembrokeshire;Carmarthen West and South Pembrokeshire
+Wales;Ceredigion;Ceredigion
+Wales;Clwyd- Denbighshire;Clwyd South
+Wales;Clwyd;Clwyd West
+Wales;Rhondda Cynon Taf;Cynon Valley
+Wales;Flintshire- Conwy;Delyn
+Wales;Gwynedd;Dwyfor Meirionnydd
+Wales;Swansea;Gower
+Wales;Caerphilly;Islwyn
+Wales;Carmarthenshire- Swansea;Llanelli
+Wales;Merthyr Tydfil- Caerphilly;Merthyr Tydfil and Rhymney
+Wales;Monmouthshire;Monmouth
+Wales;Powys;Montgomeryshire
+Wales;Neath Port Talbot;Neath
+Wales;Newport;Newport East
+Wales;Newport;Newport West
+Wales;Rhondda Cynon Taf;Ogmore
+Wales;Torfaen;Pontypridd
+Wales;Pembrokeshire;Preseli Pembrokeshire
+Wales;Rhondda Cynon Taf;Rhondda
+Wales;Swansea;Swansea East
+Wales;Swansea;Swansea West
+Wales;Torfaen;Torfaen
+Wales;Denbighshire;Vale of Clwyd
+Wales;Vale of Glamorgan;Vale of Glamorgan
+Wales;Wrexham;Wrexham
+Wales;Isle of Anglesey;Ynys Môn
+Northern Ireland;Belfast- Castlereagh;Belfast East
+Northern Ireland;Belfast- Newtownabbey;Belfast North
+Northern Ireland;Belfast- Castlereagh;Belfast South
+Northern Ireland;Belfast- Lisburn;Belfast West
+Northern Ireland;Carrickfergus- Larne- Moyle;East Antrim
+Northern Ireland;Coleraine- Londonderry/Derry;East Londonderry
+Northern Ireland;Fermanagh- Dungannon and South Tyrone;Fermanagh and South Tyrone
+Northern Ireland;Londonderry/Derry;Foyle
+Northern Ireland;Lisburn- Banbridge;Lagan Valley
+Northern Ireland;Magherafelt- Cookstown- Dungannon and South Tyrone;Mid Ulster/Mid Ulster
+Northern Ireland;Armagh- Newry and Mourne;Newry and Armagh
+Northern Ireland;Ballymena- Ballymoney- Moyle;North Antrim
+Northern Ireland;Ards- North Down;North Down
+Northern Ireland;Antrim- Newtownabbey- Lisburn;South Antrim
+Northern Ireland;Down- Newry and Mourne- Banbridge;South Down
+Northern Ireland;Ards- Castlereagh- Down;Strangford
+Northern Ireland;Craigavon- Banbridge;Upper Bann
+Northern Ireland;Omagh- Strabane;West Tyrone
+Scotland;Aberdeen City;Aberdeen North
+Scotland;Aberdeen City;Aberdeen South
+Scotland;North Lanarkshire;Airdrie and Shotts
+Scotland;Angus;Angus
+Scotland;Argyll and Bute;Argyll and Bute
+Scotland;East Ayrshire and South Ayrshire;Ayr, Carrick and Cumnock
+Scotland;Aberdeenshire;Banff and Buchan
+Scotland;Scottish Borders;Berwickshire, Roxburgh and Selkirk
+Scotland;Highland;Caithness, Sutherland and Easter Ross
+Scotland;North Ayrshire and South Ayrshire;Central Ayrshire
+Scotland;North Lanarkshire;Coatbridge, Chryston and Bellshill
+Scotland;East Dunbartonshire and North Lanarkshire;Cumbernauld, Kilsyth and Kirkintilloch East
+Scotland;Dumfries and Galloway;Dumfries and Galloway
+Scotland;Dumfries and Galloway, Scottish Borders and South Lanarkshire;Dumfriesshire, Clydesdale and Tweeddale
+Scotland;Angus and Dundee City;Dundee East
+Scotland;Angus and Dundee City;Dundee West
+Scotland;Fife;Dunfermline and West Fife
+Scotland;East Dunbartonshire;East Dunbartonshire
+Scotland;South Lanarkshire;East Kilbride, Strathaven and Lesmahagow
+Scotland;East Lothian;East Lothian
+Scotland;East Renfrewshire;East Renfrewshire
+Scotland;City of Edinburgh;Edinburgh East
+Scotland;City of Edinburgh;Edinburgh North and Leith
+Scotland;City of Edinburgh;Edinburgh South
+Scotland;City of Edinburgh;Edinburgh South West
+Scotland;City of Edinburgh;Edinburgh West
+Scotland;Falkirk;Falkirk
+Scotland;Glasgow City;Glasgow Central
+Scotland;Glasgow City;Glasgow East
+Scotland;Glasgow City;Glasgow North
+Scotland;Glasgow City;Glasgow North East
+Scotland;Glasgow City;Glasgow North West
+Scotland;Glasgow City;Glasgow South
+Scotland;Glasgow City;Glasgow South West
+Scotland;Fife;Glenrothes
+Scotland;Aberdeenshire;Gordon
+Scotland;Inverclyde;Inverclyde
+Scotland;Highland;Inverness, Nairn, Badenoch and Strathspey
+Scotland;East Ayrshire;Kilmarnock and Loudoun
+Scotland;Fife;Kirkcaldy and Cowdenbeath
+Scotland;South Lanarkshire;Lanark and Hamilton East
+Scotland;West Lothian and Falkirk;Linlithgow and East Falkirk
+Scotland;West Lothian;Livingston
+Scotland;Midlothian;Midlothian
+Scotland;Moray;Moray
+Scotland;North Lanarkshire;Motherwell and Wishaw
+Scotland;Na h-Eileanan Siar;Na h-Eileanan an Iar
+Scotland;North Ayrshire;North Ayrshire and Arran
+Scotland;Fife;North East Fife
+Scotland;Clackmannanshire and Perth and Kinross;Ochil and South Perthshire
+Scotland;Orkney Islands and Shetland Islands;Orkney and Shetland
+Scotland;Renfrewshire;Paisley and Renfrewshire North
+Scotland;Renfrewshire;Paisley and Renfrewshire South
+Scotland;Perth and Kinross;Perth and North Perthshire
+Scotland;Highland;Ross, Skye and Lochaber
+Scotland;South Lanarkshire;Rutherglen and Hamilton West
+Scotland;Stirling;Stirling
+Scotland;Aberdeenshire;West Aberdeenshire and Kincardine
+Scotland;West Dunbartonshire;West Dunbartonshire

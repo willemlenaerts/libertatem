@@ -1,0 +1,315 @@
+ADM1,Constituency
+Central,Bela-Bela
+Central,Berea
+Central,Ketane
+Central,Maliepetsane
+Central,Matala
+Central,Mekaling
+Central,Peka
+Central,Qalo
+Central,Sea Point
+Central,Sebapala
+Central,Semena
+Central,Tele
+Central,Thaba Phechela
+Central,Thaba-Phechela
+Central,Tlametlu
+Central,chiengi
+Central,chikankata
+Central,chinsali
+Central,chinsali south
+Central,chipangali
+Central,chipata central
+Central,chipili
+Central,chitambo
+Central,feira
+Central,kabwe central
+Central,kalabo central
+Central,kalomo
+Central,kalomo central
+Central,kaoma central
+Central,kasama central
+Central,luena
+Central,lundazi central
+Central,lusaka central
+Central,lusaka city central
+Central,mansa central
+Central,mongu central
+Central,monze central
+Central,mpika central
+Central,muchinga
+Central,mufulira
+Central,munali
+Central,nalolo
+Central,ndola central
+Central,petauke
+Central,petauke central
+Central,roan
+Central,senanga central
+Central,senga hill
+Central,solwezi central
+Coast,Bobatsi
+Coast,Boleka
+Coast,Boqate
+Coast,Hloahloeng
+Coast,Kolo
+Coast,Machache
+Coast,Mahlatsa
+Coast,Mashai
+Coast,Mechachane
+Coast,Mokhotlong
+Coast,Mosalemane
+Coast,Motimposo
+Coast,Mphosong
+Coast,Qacha's Nek
+Coast,Qaqatu
+Coast,Qhoali
+Coast,Qoaling
+Coast,Stadium Area
+Coast,Thaba-Moea
+Coast,Thaba-Phatsoa
+Coast,Thaba-Putsoa
+Coast,Tsikoane
+Coast,bwacha
+Coast,chama south
+Coast,chasefu
+Coast,chavuma
+Coast,chawama
+Coast,chingola
+Coast,chipata
+Coast,chipata east
+Coast,chisamba
+Coast,choma
+Coast,chongwe
+Coast,isoka east
+Coast,isoka west
+Coast,kabompo east
+Coast,kabwata
+Coast,kafulafuta
+Coast,kaoma
+Coast,kaputa
+Coast,kasama
+Coast,katuba
+Coast,kawambwa east
+Coast,kwacha
+Coast,libonda
+Coast,lukashya
+Coast,lukona
+Coast,lukulu east
+Coast,lupososhi
+Coast,lusaka rural east
+Coast,masaiti
+Coast,moomba
+Coast,mpika east
+Coast,mporokoso
+Coast,mporokoso south
+Coast,mufulira east
+Coast,mumbwa
+Coast,mumbwa east
+Coast,mwinilunga east
+Coast,ndola
+Coast,ndola south
+Coast,samfya east
+Coast,solwezi east
+Coast,zambezi east
+Eastern,Hleoheng
+Eastern,Kueneng
+Eastern,Lebakeng
+Eastern,Lipelaneng
+Eastern,Mabote
+Eastern,Mafeteng
+Eastern,Makhaleng
+Eastern,Maputsoe
+Eastern,Maseru
+Eastern,Matlakeng
+Eastern,Matseing
+Eastern,Matsieng
+Eastern,Mohale's Hoek
+Eastern,Mpharane
+Eastern,Pela-Tsoeu
+Eastern,Pela-ts'oeu
+Eastern,Pitseng
+Eastern,Teyateyaneng
+Eastern,kasempa
+Eastern,kasenengwa
+Eastern,keembe
+Eastern,livingstone
+Eastern,luangeni
+Eastern,lubansenshi
+Eastern,matero
+Eastern,monze east
+Eastern,ndola rural east
+Eastern,pambashe
+Eastern,senanga east
+Eastern,serenje
+Eastern,sesheke
+Nairobi,Abia
+Nairobi,Mahobong
+Nairobi,Malibamats'O
+Nairobi,Malibamatso
+Nairobi,Malimong
+Nairobi,Mohobollo
+Nairobi,Mount Moorosi
+Nairobi,Thaba-Bosiu
+Nairobi,chifubu
+Nairobi,chifunabuli
+Nairobi,chililabombwe
+Nairobi,chilubi
+Nairobi,chimbamilonga
+Nairobi,kabompo
+Nairobi,kabushi
+Nairobi,kanchibiya
+Nairobi,kapiri mposhi
+Nairobi,katombola
+Nairobi,magoye
+Nairobi,mambilima
+Nairobi,mulobezi
+Nairobi,mwansabombwe
+Nairobi,sikongo
+Nairobi,solwezi
+Nairobi,vubwi
+North-Eastern,Botha-Bothe
+North-Eastern,Butha-Buthe
+North-Eastern,Hlotse
+North-Eastern,Khubela
+North-Eastern,Koro-Koro
+North-Eastern,Likhoele
+North-Eastern,Lithabaneng
+North-Eastern,Lithoteng
+North-Eastern,Motete
+North-Eastern,No Tsatsane
+North-Eastern,Qhalasi
+North-Eastern,Rothe
+North-Eastern,Senqu
+North-Eastern,Seqonoka
+North-Eastern,Thaba-Tseka
+North-Eastern,Thaba-Tsoeu
+North-Eastern,Thuba Kubu
+North-Eastern,Thupa-Kubu
+North-Eastern,Tsime
+North-Eastern,Tsoelike
+North-Eastern,bahati
+North-Eastern,bangweulu north
+North-Eastern,chama north
+North-Eastern,chembe
+North-Eastern,chinsali north
+North-Eastern,gwembe north
+North-Eastern,gwembe south
+North-Eastern,itezhi-tezhi
+North-Eastern,kapoche
+North-Eastern,kasama north
+North-Eastern,katete north
+North-Eastern,katete south
+North-Eastern,kitwe north
+North-Eastern,lusaka rural north
+North-Eastern,mbala north
+North-Eastern,mbala south
+North-Eastern,mkushi north
+North-Eastern,mkushi south
+North-Eastern,mongu
+North-Eastern,mununshi
+North-Eastern,nchelenge
+North-Eastern,ndola north
+North-Eastern,pemba
+North-Eastern,petauke south
+North-Eastern,sinjembela
+Nyanza,Khafung
+Nyanza,Kolonyama
+Nyanza,Maama
+Nyanza,Maletsunyane
+Nyanza,Malingoaneng
+Nyanza,Mantsonyane
+Nyanza,Moyeni
+Nyanza,Nokong
+Nyanza,Nqechane
+Nyanza,Pulane
+Nyanza,Senqunyane
+Nyanza,Taung
+Nyanza,Thabana Morena
+Nyanza,Thabana-Morena
+Nyanza,bangweulu
+Nyanza,bwanamkubwa
+Nyanza,chadiza
+Nyanza,chilanga
+Nyanza,dundumwezi
+Nyanza,kalabo
+Nyanza,kamfinsa
+Nyanza,kankoyo
+Nyanza,kantanshi
+Nyanza,kanyama
+Nyanza,kawambwa
+Nyanza,luampa
+Nyanza,luanshya
+Nyanza,luapula
+Nyanza,lufwanyama
+Nyanza,lukanga
+Nyanza,lundazi
+Nyanza,malambo
+Nyanza,mandevu
+Nyanza,mangango
+Nyanza,mankoya
+Nyanza,mansa
+Nyanza,mapatizya
+Nyanza,mazabuka
+Nyanza,mbabala
+Nyanza,mbala
+Nyanza,milanzi
+Nyanza,mkaika
+Nyanza,monze
+Nyanza,mpulungu
+Nyanza,msanzala
+Nyanza,mwandi
+Nyanza,nakonde
+Nyanza,nalikwanda
+Nyanza,namwala
+Nyanza,nangoma
+Nyanza,nchanga
+Nyanza,nkana
+Nyanza,nyimba
+Nyanza,samfya
+Nyanza,senanga
+Nyanza,senanga west
+Nyanza,shiwang’andu
+Nyanza,siavonga
+Nyanza,sinazongwe
+Nyanza,sinda
+Nyanza,zimba
+Rift Valley,Hololo
+Rift Valley,Likhetlane
+Rift Valley,Matelile
+Rift Valley,Qalabane
+Rift Valley,kabwe
+Rift Valley,kafue
+Rift Valley,kalulushi
+Rift Valley,liuwa
+Rift Valley,lukulu
+Rift Valley,lumezi
+Rift Valley,lunte
+Rift Valley,malole
+Rift Valley,rufunsa
+Western,Qeme
+Western,balovale west
+Western,bweengwa
+Western,chimwemwe
+Western,chipata west
+Western,gwembe
+Western,kabompo west
+Western,kabwe south
+Western,kasama west
+Western,kitwe west
+Western,lukulu west
+Western,lusaka rural west
+Western,mfuwe
+Western,monze west
+Western,mpongwe
+Western,mufumbwe
+Western,mumbwa west
+Western,mwembezhi
+Western,mwense
+Western,mweru
+Western,mwinilunga west
+Western,ndola rural west
+Western,petauke west
+Western,solwezi west
+Western,wusakile
+Western,zambezi west

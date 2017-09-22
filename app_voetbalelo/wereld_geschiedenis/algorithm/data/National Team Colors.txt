@@ -1,0 +1,858 @@
+﻿National Teams - Team Colors																																																													
+																																																													
+Team,Shirt,,Short,Socks
+Macau, Green,																																																												
+Great Britain, Blue	
+Saar, Blue
+																																																											
+Algeria, Green, green edges,white,white																																																													
+																																																													
+Angola,Red, black & yellow edges, black,red																																																													
+																																																													
+Benin,Green, yellow edges,yellow,red																																																													
+																																																													
+Botswana,Sky blue, white & black edges,black,white																																																													
+																																																													
+Burkina Faso,Red, green edges,green,red																																																													
+																																																													
+Burundi, Red, white & green edges,green,green																																																													
+																																																									
+Cameroon,Green, yellow & red edges, red,yellow																																																													
+																																																													
+Cape Verde Islands,Blue, white, red & yellow edges,red,blue																																																													
+																																																													
+Central African Republic,Blue & white hoops, red edges,green,white																																																													
+																																																													
+Chad,Blue, yellow edges,yellow,red																																																													
+																																																													
+Comoros,Green, white edges,green,green																																																													
+																																																													
+Congo,Red, yellow & green edges, red,red																																																													
+																																																													
+Congo DR,Yellow, blue edges,blue,yellow																																																													
+																																																													
+Côte d'Ivoire,Orange, white edges,white,green																																																													
+																																																													
+Djibouti,Blue & white stripes, red star,blue,blue																																																													
+																																																													
+Egypt,Red, white & black edges,white,black																																																													
+																																																													
+Equatorial Guinea,Red, white & green stripes, blue edges,blue,red																																																													
+																																																													
+Eritrea, Blue, white edges, white,white																																																													
+																																																													
+Ethiopia,Green, yellow & red edges, yellow,red																																																													
+																																																													
+Gabon,Green, yellow edges,yellow,blue																																																													
+																																																													
+Gambia,Red, white edges,blue,green,																																																													
+																																																													
+Ghana,Black, black edges,white,white																																																													
+																																																													
+Guinea,Red, yellow & green edges, yellow,green																																																													
+																																																													
+Guinea-Bissau,Red, yellow & green edges, red,green																																																													
+																																																													
+Kenya,Red, white, green & black edges,black,red																																																													
+																																																													
+Lesotho, Blue & white stripes,green,white																																																													
+																																																													
+Liberia, Red, white & blue edges,blue,white																																																													
+																																																													
+Libya,Green, white edges,green,green																																																													
+																																																													
+Madagascar,Green, white edges,green,green																																																													
+																																																													
+Malawi,Red, black & green edges,red,red																																																													
+																																																													
+Mali,Green, yellow edges,yellow,red																																																													
+																																																													
+Mauritania,Green, yellow edges,green,green																																																													
+																																																													
+Mauritius,Red, blue, yellow & green edges,red,red																																																													
+																																																													
+Morocco, Red, green & white edges,red,green																																																													
+																																																													
+Mozambique,Red, black edges,black,red																																																													
+																																																													
+Namibia, Red, white, blue, green & yellow edges,red,red																																																													
+																																																													
+Niger,Orange, white edges,white,green																																																													
+																																																													
+Nigeria, Green, white edges,green,green																																																													
+																																																													
+Rwanda,Yellow, blue sleeves,blue,yellow																																																													
+																																																													
+Sao Tome e Principe,Green, yellow, black & red hoop,yellow,green																																																													
+																																																													
+Senegal, Green, green, yellow & red edges,white,white																																																													
+																																																													
+Seychelles,Blue, yellow hoop, red edges, blue,blue																																																													
+																																																													
+Sierra Leone,Green, white & blue edges, white,blue																																																													
+																																																													
+Somalia, Blue, white edges, blue,blue																																																													
+																																																													
+South Africa,Yellow, green & white edges,green,white																																																													
+																																																													
+South Sudan, Red, black, red & green edges,black,white																																																													
+Sudan,Red, white edges,red,red																																																													
+																																																													
+Swaziland,Blue, yellow & red edges,blue,blue																																																													
+																																																													
+Tanzania,Green, yellow & blue edges,black,blue																																																													
+																																																													
+Togo,Red, green & yellow edges, green,yellow																																																													
+																																																													
+Tunisia, Red, white edges,white,red																																																													
+																																																													
+Uganda,Yellow, black, yellow & red edges,black,yellow																																																													
+																																																													
+Zambia,Green, white & orange edges,white,green																																																													
+																																																													
+Zimbabwe,Green, yellow, black & red edges,yellow,green																																																													
+																																																													
+Afghanistan, Red, white edges,white,red																																																													
+																																																													
+Australia,Green, yellow edges, green,green																																																													
+																																																													
+Bahrain,Red, white edges,red,red																																																													
+																																																													
+Bangladesh,Orange, dark green edges,dark green,orange																																																													
+																																																													
+Bhutan,Yellow, red edges,yellow,red																																																													
+																																																													
+Brunei Darussalam,Yellow, black edges, black,yellow																																																													
+																																																													
+Cambodia, Blue, white & red edges,blue,blue																																																													
+																																																													
+China,Red, red edges,white,white																																																													
+																																																													
+Chinese Taipei,Blue, white & red edges,white,red																																																													
+																																																													
+Timor-Leste,Red, white edges,black,red																																																													
+																																																													
+Guam, Blue, white edges,white,blue																																																													
+																																																													
+Hong Kong,Red, white & black edges,red,red																																																													
+																																																													
+India,Sky blue, white & blue edges,white,blue																																																													
+																																																													
+Indonesia,Red, white edges,white,red																																																													
+																																																													
+Iran, Green, red & green edges,white,white																																																													
+																																																													
+Iraq, Green, black & green edges,white,white																																																													
+																																																													
+Japan,Blue, white edges,white,blue																																																													
+																																																													
+Jordan,Red, white hoop, white,red																																																													
+																																																													
+Korea DPR,Red, white edges,red,red																																																													
+																																																													
+Korea Republic,Red, white edges,dark blue,red																																																													
+																																																													
+Kuwait,Blue, white edges,white,blue																																																													
+																																																													
+Kyrgyzstan,Red, white & black edges,red,red																																																													
+																																																													
+Laos, Red, white edges,red,red																																																													
+																																																													
+Lebanon,Red, white edges,white,red																																																													
+																																																													
+Macao,Green, white edges,white,green																																																													
+																																																													
+Malaysia, Yellow, black edges, yellow,yellow																																																													
+																																																													
+Maldives, Green, white edges,red,green																																																													
+																																																													
+Mongolia, Red, white & blue edges,red,white																																																													
+																																																													
+Myanmar,Red, white & blue edges,white,blue																																																													
+																																																													
+Nepal,Red, white & blue edges,red,red																																																													
+																																																													
+Oman, Red, green & white edges,red,red																																																													
+																																																													
+Pakistan, Dark green, white sleeves,white,dark green																																																													
+																																																													
+Palestine,Green, black, white & red edges,black,red																																																													
+																																																													
+Philippines, Blue, white & red edges,white,red																																																													
+																																																													
+Qatar,Brown, white edges,white,brown																																																													
+																																																													
+Saudi Arabia,Green, green edges,green,white																																																													
+																																																													
+Singapore,Red, white sleeves,red,red																																																													
+																																																													
+Sri Lanka,Brown, brown & yellow edges,white,white																																																													
+																																																													
+Syria,Red, black sleeves,black,red																																																													
+																																																													
+Tajikistan,Green, green edges,white,white																																																													
+																																																													
+Thailand, Red, white & blue edges,red,red																																																													
+																																																													
+Turkmenistan,Green, white edges,white,green																																																													
+																																																													
+United Arab Emirates,Red, red edges,white,white																																																													
+																																																													
+Uzbekistan,Blue, blue edges,white,white																																																													
+																																																													
+Vietnam,Red, yellow edges,red,red	
+South Vietnam, Yellow																																																												
+																																																													
+Yemen,Red, white edges,white,black																																																													
+Yemen PDR, Purple																																																													
+Albania,Red, black edges,black,red																																																													
+																																																										
+Andorra,Yellow, red & blue edges,red,blue																																																													
+																																																													
+Armenia,Red, blue edges, blue,orange																																																													
+																																																													
+Austria,Red, black edges, black,white																																																													
+																																																													
+Azerbaijan,Blue, blue-red-green stripe,blue,white																																																													
+																																																													
+Belarus,Red, green & red edges,green,white																																																													
+																																																													
+Belgium,Red, black & yellow edges,red,red																																																													
+																																																													
+Bosnia-Herzegovina,Blue, blue edges,blue,white																																																													
+																																																													
+Bulgaria, Green, green & red edges,green,red																																																													
+																																																													
+Croatia,Red & white checks, white,blue																																																													
+																																																													
+Cyprus,Blue, white edges,white,blue																																																													
+																																																													
+Czech Republic,Red, white & blue edges,white,blue																																																													
+Czechoslovakia, Red	
+Yugoslavia, Blue
+Soviet Union, Red
+Denmark,Red, white edges,white,red																																																													
+																																																													
+England,Red, red edges,blue,white																																																													
+																																																													
+Estonia,Blue, black edges,black,white																																																													
+																																																													
+Faroe Islands,Blue, blue & red edges,blue,white																																																													
+																																																													
+Finland,Blue, blue edges,blue,white																																																													
+																																																													
+France,Blue, white & red edges,white,red																																																													
+																																																													
+Georgia,Red,black,white																																																													
+																																																													
+Germany,Black, black edges, black,white		
+German DR,Black, black edges, black,white																																																												
+Germany FR, Black,black edges, black,white																																															
+Greece,Blue, white edges,blue,blue																																																													
+																																																													
+Hungary,Red, white & green edges,white,green																																																													
+																																																													
+Iceland,Blue, white edges,white,blue																																																													
+																																																													
+Ireland Republic,Green, white edges, white,green																																																													
+Ireland, Green		
+Irish Free State, Green
+Republic of Ireland, Green
+Palestine British Mandate, Blue
+Curacao, Blue
+Burma, Red
+Khmer, Red
+UAR, Red,
+Zaire, Green
+Congo-Kinshasa, Green
+Rhodesia, Yellow
+Sao Tome e Principe, Green
+Sao Tome e Principe , Green
+Upper Volta, Green
+CIS, Red,
+RCS,Red,
+Bosnia and Herzegovina, Blue,
+Serbia and Montenegro, Red
+Israel,Sky blue, white edges,white,sky blue																																																													
+																																																													
+Italy,All blue,white,blue																																																													
+																																																													
+Kazakhstan,Blue, yellow edges, blue,yellow																																																													
+																																																													
+Latvia,Carmine red, white edges,white,carmine red																																																													
+																																																													
+Liechtenstein,Blue, white edges,red,blue																																																													
+																																																													
+Lithuania,Yellow, green edges,green,red																																																													
+																																																													
+Luxembourg,Red, white edges,white,blue																																																													
+																																																													
+FYR Macedonia,Red, yellow edges,red,red																																																													
+																																																													
+Malta,Red, white edges,white,red																																																													
+																																																													
+Moldova,Yellow, red & blue edges,blue,red																																																													
+																																																													
+Montenegro,Red, yellow edges,red,red																																																													
+																																																													
+Netherlands, Orange, white edges,white,orange or sky blue																																																													
+																																																													
+Northern Ireland,Green, white edges, white,green																																																													
+																																																													
+Norway,Red, blue edges, white,blue																																																													
+																																																													
+Poland,Red, red edges,red,white																																																													
+																																																													
+Portugal, Red, green edges,green,red																																																													
+																																																													
+Romania,Yellow, red & blue edges,yellow,yellow																																																													
+																																																													
+Russia,Red, blue edges,blue,red																																																													
+																																																													
+San Marino,Sky blue, white edges,white,sky blue																																																													
+																																																													
+Scotland, Marine blue, white edges,white,marine blue																																																													
+																																																													
+Serbia,Red, white edges,blue,white																																																													
+																																																													
+Slovakia, Blue, white edges,blue,blue																																																													
+																																																													
+Slovenia, Green, green edges, green,white																																																													
+																																																													
+Spain,Red, yellow edges,blue,black																																																													
+																																																													
+Sweden,Yellow, blue edges, blue,yellow																																																													
+																																																													
+Switzerland, Red, white edges,white,red																																																													
+																																																													
+Turkey,Red, white edges,red,red																																																													
+																																																													
+Ukraine,Yellow, blue edges, blue,yellow																																																													
+																																																													
+Wales,Red, white edges,white,red																																																													
+																																																													
+American Samoa,Blue, white edges, red,white																																																													
+																																																													
+Cook Islands,Green, white edges,green,green																																																													
+																																																													
+Fiji,Black, black edges,black,white																																																													
+																																																													
+New Caledonia, Grey, red & white edges,red,grey																																																													
+																																																													
+New Zealand,Black, black edges,white,white																																																													
+																																																													
+Papua New Guinea,Red, yellow & black edges,black,yellow																																																													
+																																																													
+Samoa,Blue, white & red edges,white,red																																																													
+																																																													
+Solomon Islands,Yellow, blue & green edges,blue,white																																																													
+																																																													
+Tahiti, Red & white stripes,red,white																																																													
+																																																													
+Tonga,Red, white edges,white,red																																																													
+																																																													
+Vanuatu,Yellow, black edges,black,yellow																																																													
+																																																													
+Anguilla, Sky blue, orange edges,sky blue,orange																																																													
+																																																													
+Antigua and Barbuda,Red, black, black & yellow edges,black,black																																																													
+																																																													
+Aruba,Yellow, sky blue edges,sky blue,yellow																																																													
+																																																													
+Bahamas,Yellow, black edges,black,yellow																																																													
+																																																													
+Barbados, Yellow, blue edges,blue,yellow																																																													
+																																																													
+Belize,Dark blue, white & red edges,red,red																																																													
+																																																													
+Bermuda,Blue, white & red edges, white,blue																																																													
+																																																													
+British Virgin Islands,Green, yellow edges,green,green																																																													
+																																																													
+Canada,Red, white edges, white,red																																																													
+																																																													
+Cayman Islands,Red, white edges, blue,blue,																																																													
+																																																													
+Costa Rica,Red, white & blue edges, blue,white																																																													
+																																																													
+Cuba,Red, white edges, red,red																																																													
+China PR, Red
+																																																													
+Dominica, Green, red edges, black,green																																																													
+																																																													
+Dominican Republic,Blue, red sleeves, white edges,blue,red																																																													
+																																																													
+El Salvador,Blue, white edges,blue,blue																																																													
+																																																													
+Grenada,Yellow, black edges,black,red																																																													
+																																																													
+Guatemala,Sky Blue, white edges,sky blue,sky blue																																																													
+																																																													
+Guyana,Green & yellow stripes,green,yellow																																																													
+																																																													
+Haiti,Blue & red stripes,Blue,red,																																																													
+																																																													
+Honduras, Blue & white stripes, white,white																																																													
+																																																													
+Jamaica,Yellow, green & black edges,black,yellow																																																													
+																																																													
+Mexico,Green, white & red edges,white,red																																																													
+																																																													
+Montserrat,Dark green, white & black edges,black,white																																																													
+																																																													
+Netherlands Antilles,Blue, blue & red edges, blue,red 																																																													
+																																																													
+Nicaragua,Blue, white edges,white,blue																																																													
+																																																													
+Panama,Red, white edges, red,red																																																													
+																																																													
+Puerto Rico,Red, white edges, blue,red																																																													
+																																																													
+St. Kitts and Nevis,Red, yellow, green & black edges,green,red																																																													
+																																																													
+St. Lucia,Sky blue, yellow & black edges,yellow,blue																																																													
+																																																													
+St. Vincent and the Grenadines,Yellow, green & blue edges,green,blue																																																													
+																																																													
+Suriname,Green, green & red edges,green,white																																																													
+																																																													
+Trinidad and Tobago,Red, black & narrow white stripes,black,red																																																													
+																																																													
+Turks and Caicos Islands,Turquoise, white edges,white,white																																																													
+																																																													
+USA,Blue, & red strip, blue,white																																																													
+																																																													
+US Virgin Islands,Blue & yellow stripes,blue,blue																																																													
+																																																													
+Argentina, Sky blue & white stripes, black,white																																																													
+																																																													
+Bolivia,Green, white edges,white,green																																																													
+																																																													
+Brazil, Yellow, green edges,blue,white																																																													
+																																																													
+Chile,Red, white edges, blue,white																																																													
+																																																													
+Colombia,Yellow, blue edges,blue,red																																																													
+																																																													
+Ecuador,Yellow, blue & red edges, blue,red																																																													
+																																																													
+Paraguay,Red & white stripes, blue edges,blue,white																																																													
+																																																													
+Peru,Red, red sash,white,white																																																													
+																																																													
+Uruguay,Sky blue, black edges,black,black																																																													
+																																																													
+Venezuela, Claret, white edges,white,white,																																																													
+																																																																																																																										
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																																																						
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													
+																																																													

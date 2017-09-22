@@ -1,0 +1,27 @@
+('LUX','IRL','DEU','SMR','GRC','ITA','SWE','NOR','BEL','AND','AUT','DNK','LIE','CHE','ISL','NLD','ESP','FRA','GBR','PRT','GIB','FIN')
+
+# Get via ogr2ogr
+
+# 1.    Natural Earth Data
+# 1.a   ADM0
+ogr2ogr -f GeoJSON -where "ADM0_A3 IN ('LUX','IRL','DEU','SMR','GRC','ITA','SWE','NOR','BEL','AND','AUT','DNK','LIE','CHE','ISL','NLD','ESP','FRA','GBR','PRT','GIB','FIN')" "geodata/ElectionHistory/input/MapData/geo_ADM0.json" "geodata/ElectionHistory/input/MapData/NaturalEarthData/ADM0/ne_10m_admin_0_map_subunits.shp"
+ogr2ogr -f GeoJSON "geodata/ElectionHistory/input/MapData/geo_ADM0.json" "geodata/ElectionHistory/input/MapData/NaturalEarthData/ADM0/ne_10m_admin_0_map_subunits.shp"
+
+topojson -o geodata/ElectionHistory/input/MapData/topo_ADM0.json --properties c=ADM0_A3 geodata/ElectionHistory/input/MapData/geo_ADM0.json
+
+# 1.b   ADM1
+ogr2ogr -f GeoJSON -where "ADM0_A3 IN ('LUX','IRL','DEU','SMR','GRC','ITA','SWE','NOR','BEL','AND','AUT','DNK','LIE','CHE','ISL','NLD','ESP','FRA','GBR','PRT','GIB','FIN')" "geodata/ElectionHistory/input/MapData/geo_ADM1.json" "geodata/ElectionHistory/input/MapData/NaturalEarthData/ADM1/ne_10m_admin_1_states_provinces.shp"
+ogr2ogr -f GeoJSON "geodata/ElectionHistory/input/MapData/geo_ADM1.json" "geodata/ElectionHistory/input/MapData/NaturalEarthData/ADM1/ne_10m_admin_1_states_provinces.shp"
+
+topojson -o geodata/ElectionHistory/input/MapData/topo_ADM1.json  --properties n=name --properties c=adm0_a3 geodata/ElectionHistory/input/MapData/geo_ADM1.json
+
+# 2. CLEA Data
+
+# Belgium
+ogr2ogr -f GeoJSON "geodata/ElectionHistory/input/CleaMaps/Belgium/geo.json" "geodata/ElectionHistory/input/CleaMaps/Belgium/GRED_Belgium.shp"
+==> Fix utf-8 issues
+topojson -o geodata/ElectionHistory/input/CleaMaps/Belgium/topo.json  --properties name=CST_N geodata/ElectionHistory/input/CleaMaps/Belgium/geo.json
+
+# Germany
+ogr2ogr -f GeoJSON "geodata/ElectionHistory/input/CleaMaps/Germany/geo.json" "geodata/ElectionHistory/input/CleaMaps/Germany/GRED_Germany_PRtier.shp"
+topojson -o geodata/ElectionHistory/input/CleaMaps/Germany/topo.json  --properties name=CST_N geodata/ElectionHistory/input/CleaMaps/Germany/geo.json
