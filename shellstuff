@@ -1,0 +1,15 @@
+# Linux shell stuff
+# Launch python
+python3
+
+# Install python3 package
+sudo pip3 install [packagename]
+
+# ipython
+ipython3
+
+# Inside ipython3:
+%cpaste
+
+--
+

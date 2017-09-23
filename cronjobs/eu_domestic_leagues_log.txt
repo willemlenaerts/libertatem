@@ -1,0 +1,9 @@
+####################################################################
+####################################################################
+Portugal
+ELO Algorithm finished
+ELO Algorithm finished
+0/1000 simulations finished
+Estimated Time Left: 741.0 seconds
+100/1000 simulations finished
+Estimated Time Left: 701.0 seconds
