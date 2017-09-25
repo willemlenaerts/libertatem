@@ -1,20 +1,27 @@
+# Set sys.path to get access to all modules
+import sys
+import os.path
+sys.path.append('/home/ubuntu/workspace/')
+
 from app_voetbalelo.uefa_leagues.expand_elo import expand_elo
 from app_voetbalelo.uefa_leagues.game_to_team import make_standing, rank
 from app_voetbalelo.uefa_leagues.montecarlo import montecarlo
 from app_voetbalelo.uefa_leagues.get_elo_data import get_elo_data
 from app_voetbalelo.uefa_leagues.get_elo_team import get_elo_team
 from app_voetbalelo.uefa_leagues.functions.ordered_set import ordered_set
+
 import copy
 import datetime
 import json
 import pickle
 import ftplib
+import boto3
 
 # Get Input data
 import pickle
 games = pickle.load(open("app_voetbalelo/uefa_leagues/data/games.p","rb"))
 leagues = ["ucl","uel"]
-simulations = 5000
+simulations = 50
 
 team_data = dict()
 group_data = dict()
@@ -96,22 +103,34 @@ teams = pickle.load(open("app_voetbalelo/uefa_leagues/data/teams.p","rb"))
 json.dump(teams,open("app_voetbalelo/uefa_leagues/result/teams.json","w"))
 json.dump(knockout_round,open("app_voetbalelo/uefa_leagues/result/knockout_round.json","w"))
 
-# Write to FTP site
-session = ftplib.FTP('ftp.sway-blog.be','sway-blog.be','Will0870')
-session.cwd('/www/data/elo-uefa-leagues')
+# # Write to FTP site
+# session = ftplib.FTP('ftp.sway-blog.be','sway-blog.be','Will0870')
+# session.cwd('/www/data/elo-uefa-leagues')
 
-# Open data as JSON buffered (only way ftplib works)
-data = open("app_voetbalelo/uefa_leagues/result/team_data.json","rb") # file to send
-session.storbinary('STOR data.json', data)     # send the file
-data = open("app_voetbalelo/uefa_leagues/result/teams.json","rb") # file to send
-session.storbinary('STOR teams.json', data)     # send the file
-data = open("app_voetbalelo/uefa_leagues/result/knockout_round.json","rb") # file to send
-session.storbinary('STOR knockout_round.json', data)     # send the file
-# Create dict with last update date
-# Save as json and load buffered
+# # Open data as JSON buffered (only way ftplib works)
+# data = open("app_voetbalelo/uefa_leagues/result/team_data.json","rb") # file to send
+# session.storbinary('STOR data.json', data)     # send the file
+# data = open("app_voetbalelo/uefa_leagues/result/teams.json","rb") # file to send
+# session.storbinary('STOR teams.json', data)     # send the file
+# data = open("app_voetbalelo/uefa_leagues/result/knockout_round.json","rb") # file to send
+# session.storbinary('STOR knockout_round.json', data)     # send the file
+# # Create dict with last update date
+# # Save as json and load buffered
+# last_update = {"date": datetime.datetime.now().strftime("%d/%m/%Y")}
+# json.dump(last_update,open("app_voetbalelo/uefa_leagues/result/last_update.json","w"))
+# last_update = open("app_voetbalelo/uefa_leagues/result/last_update.json","rb")
+# session.storbinary('STOR date.json', last_update)
+
+# session.quit()
+
+# Upload to Amazon S3 Bucket
+
+session = boto3.Session(region_name='eu-central-1',aws_access_key_id='AKIAIOW6REVSI6EASEIA',aws_secret_access_key='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')
+s3 = session.resource('s3')
+s3.Object('swayblog', 'uefa_leagues/data.json').put(Body=open("app_voetbalelo/uefa_leagues/result/team_data.json","rb"),ACL='public-read')
+s3.Object('swayblog', 'uefa_leagues/teams.json').put(Body=open("app_voetbalelo/uefa_leagues/result/teams.json","rb"),ACL='public-read')
+s3.Object('swayblog', 'uefa_leagues/kockout_round.json').put(Body=open("app_voetbalelo/uefa_leagues/result/knockout_round.json","rb"),ACL='public-read')
+
 last_update = {"date": datetime.datetime.now().strftime("%d/%m/%Y")}
 json.dump(last_update,open("app_voetbalelo/uefa_leagues/result/last_update.json","w"))
-last_update = open("app_voetbalelo/uefa_leagues/result/last_update.json","rb")
-session.storbinary('STOR date.json', last_update)
-
-session.quit()
+s3.Object('swayblog', 'uefa_leagues/date.json').put(Body=open("app_voetbalelo/uefa_leagues/result/last_update.json","rb"),ACL='public-read')

@@ -6,7 +6,7 @@ from pyvirtualdisplay import Display
 from selenium import webdriver
 import datetime
 
-seasons = list(range(2016,2017))
+seasons = list(range(2016,2019))
 for i in range(len(seasons)):
     if seasons[i] == 2007:
         seasons.pop(i)

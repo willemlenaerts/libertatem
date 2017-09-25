@@ -1,0 +1,9 @@
+########################################################
+# Building a soccer betting algorithm to beat bookmakers
+########################################################
+
+The aim is to develop a betting strategy that has a proven record of beating bookmakers.
+For this we need the following:
+1. Get historical data (results of games + betting quotes)
+2. Algorithm to discover and test strategies
+3. Get new quotes + bet profitable strategies
